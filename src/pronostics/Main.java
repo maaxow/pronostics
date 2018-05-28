@@ -6,6 +6,18 @@ public class Main {
 	
 	
 	public Main(){
-		this.message = "Just a test";
+		this.setMessage("Just a test");
 	}
+
+
+	public String getMessage() {
+		return message;
+	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
 }
