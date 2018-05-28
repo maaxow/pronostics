@@ -4,13 +4,14 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import pronostics.service.MatchService;
+import pronostics.service.GameService;
 
 @Configuration
-// @ComponentScan
+@ComponentScan
 public class AppConfig {
 	@Bean
 	public DataSource dataSource() {
@@ -24,6 +25,6 @@ public class AppConfig {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		context.getBean(MatchService.class).process();
+		context.getBean(GameService.class).process();
 	}
 }
