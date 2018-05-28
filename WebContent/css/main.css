@@ -7,3 +7,7 @@
 	width: 1080;
 	height: 720;
 }
+
+.flag {
+	display: none;
+}

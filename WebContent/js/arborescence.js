@@ -1,5 +1,6 @@
 var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
+	var unknownFlag = document.getElementById("unknown");
 	var huitiemeLink = function(ctx, x, y){
 	    ctx.moveTo(x,y);
 	    ctx.lineTo(x+15,y);
@@ -75,7 +76,8 @@ var c = document.getElementById("myCanvas");
 	var rectangle = function(ctx, x, y){
 		ctx.rect(x, y, 220, 40);
 		ctx.font = "18px Calibri,Geneva,Arial";
-		ctx.strokeText("Equipe", x+50, y+25);
+		ctx.drawImage(unknownFlag, x+6 , y+7, 45, 25);
+		ctx.strokeText("Equipe", x+55, y+25);
 		ctx.strokeText("0", x+205, y+25);
 		ctx.stroke();
 	}
