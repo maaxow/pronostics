@@ -74,6 +74,9 @@ var c = document.getElementById("myCanvas");
 
 	var rectangle = function(ctx, x, y){
 		ctx.rect(x, y, 220, 40);
+		ctx.font = "20px Calibri,Geneva,Arial";
+		ctx.strokeText("Equipe", x+10, y+25);
+		ctx.strokeText("0", x+205, y+25);
 		ctx.stroke();
 	}
 
