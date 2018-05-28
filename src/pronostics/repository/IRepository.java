@@ -3,13 +3,14 @@ package pronostics.repository;
 import java.util.List;
 
 public interface IRepository<T> {
-	void save(T t);
 	
-	T load(long id);
+	T findById(long id);
+	
+	void save(T t);
 	
 	void delete(long id);
 	
 	void update(T t);
 	
-	List<T> loadAll();
+	List<T> findAll();
 }
