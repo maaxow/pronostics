@@ -20,15 +20,12 @@ public class TeamRepository implements IRepository<Team> {
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcInsert jdbcInsert;
 
-	
 	@PostConstruct
 	private void postConstruct() {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcInsert = new SimpleJdbcInsert(dataSource)
-				.withTableName("TEAM")
-				.usingGeneratedKeyColumns("team_id");
+		jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("TEAM").usingGeneratedKeyColumns("team_id");
 	}
-	
+
 	@Override
 	public void save(Team t) {
 		// TODO Auto-generated method stub
