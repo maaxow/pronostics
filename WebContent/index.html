@@ -5,6 +5,8 @@
 	<title>Pronostics</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="lib/bootstrap-4.1.1/js/bootstrap.min.js"></script>
+	<script src="lib/angularjs-1.6.10/angular.min.js"></script>
+	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
 	<script src="js/main.js"></script>
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
@@ -20,13 +22,13 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item active">
-					<a class="nav-link" href="#" onclick="make()">Matches <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="components/matches/matches.html" onclick="make()">Matches <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Groupes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Finales</a>
+					<a class="nav-link" href="components/finales/finales.html">Finales</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Classement</a>
