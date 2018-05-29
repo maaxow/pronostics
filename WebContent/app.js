@@ -7,14 +7,14 @@
 		.state('home', {
 			url: "/",
 			templateUrl: paths.views + '/index.html',
-			controller : 'HomeController'
+			controller : 'home'
 		})
 		.state('home.finale', {
 			url: "finale",
 			views : {
 				'main@home' : {
 					templateUrl: paths.views + '/finale.html',
-					controller : 'FinaleController'
+					controller : 'finale'
 				}
 			}
 		})
@@ -23,14 +23,14 @@
 			views : {
 				'main@home' : {
 					templateUrl: paths.views + '/match.html',
-					controller : 'MatchController',
+					controller : 'match',
 				}
 			}
 		})
 		.state('login', {
 				url: "/login",
-				templateUrl: paths.views + '/loginForm.html',
-				controller: 'LoginController'
+				templateUrl: paths.views + '/login.html',
+				controller: 'login'
 		});
 		
 
