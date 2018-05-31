@@ -9,10 +9,7 @@
 					http://www.springframework.org/schema/aop
 					http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<context:annotation-config />
-	<aop:aspectj-autoproxy proxy-target-class="true" />
 
-	<context:component-scan base-package="pronostics" />
-
-	<import resource="classpath:spring/context/spring-datasource.xml" />
+	
+<!-- 	<bean id="gameRepository" class="pronostics.repository.GameRepository"></bean> -->
 </beans>

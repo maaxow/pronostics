@@ -9,35 +9,40 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import pronostics.model.Team;
+import pronostics.repository.sqlBuilder.TeamSQLBuilder;
 
+@Repository
 public class TeamRepository implements IRepository<Team> {
 
 	@Autowired
-	private DataSource dataSource;
+	DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
-	private SimpleJdbcInsert jdbcInsert;
+	private static final TeamSQLBuilder teamBuilder = new TeamSQLBuilder();
+	private static final String findByIdQuery = teamBuilder.buildFindByIdQuery();
+	private static final String findAllQuery = teamBuilder.buildFindAllQuery();
+	private static final String saveQuery = teamBuilder.buildSaveQuery();
+	private static final String updateQuery = teamBuilder.buildUpdateQuery();
+	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
 
 	@PostConstruct
 	private void postConstruct() {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("TEAM").usingGeneratedKeyColumns("team_id");
 	}
 
 	@Override
-	public void save(Team t) {
+	public int save(Team t) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
 	public Team findById(long id) {
-		List<Team> games = jdbcTemplate.query("SELECT * from Game where game_id = ?", new Object[] { id },
-				(resultSet, i) -> {
-					return toTeam(resultSet);
-				});
+		List<Team> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
+			return toTeam(resultSet);
+		});
 
 		if (games.size() == 1) {
 			return games.get(0);
@@ -46,21 +51,22 @@ public class TeamRepository implements IRepository<Team> {
 	}
 
 	@Override
-	public void delete(long id) {
+	public int delete(long id) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void update(Team t) {
+	public int update(Team t) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
 	public List<Team> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
+			return toTeam(resultSet);
+		});
 	}
 
 	/**
@@ -87,4 +93,5 @@ public class TeamRepository implements IRepository<Team> {
 		}
 		return null;
 	}
+
 }

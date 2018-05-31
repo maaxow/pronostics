@@ -4,32 +4,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import pronostics.model.User;
 
+@Repository
 public class UserRepository implements IRepository<User> {
 
-	@Autowired
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
-	private SimpleJdbcInsert jdbcInsert;
-
-	@PostConstruct
-	private void postConstruct() {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("User").usingGeneratedKeyColumns("user_id");
-	}
+//	private SimpleJdbcInsert jdbcInsert;
 
 	@Override
-	public void save(User t) {
+	public int save(User t) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
@@ -46,15 +35,15 @@ public class UserRepository implements IRepository<User> {
 	}
 
 	@Override
-	public void delete(long id) {
+	public int delete(long id) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void update(User t) {
+	public int update(User t) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
@@ -82,4 +71,5 @@ public class UserRepository implements IRepository<User> {
 		}
 		return user;
 	}
+
 }

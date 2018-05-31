@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body data-ng-app="app">
 
 	<div class="skip-navbar"></div>
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -21,11 +21,11 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="components/matches/matches.html" onclick="make()">Matches <span class="sr-only">(current)</span></a>
-				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Groupes</a>
+					<a class="nav-link" style="cursor: pointer" data-ui-sref="home.match" data-ng-click="make()">Matches <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Groupes</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="components/finales/finales.html">Finales</a>
