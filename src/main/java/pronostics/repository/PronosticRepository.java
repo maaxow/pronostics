@@ -4,39 +4,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
+
 
 import pronostics.model.Game;
 import pronostics.model.Pronostic;
 import pronostics.model.User;
 
+
+@Repository
 public class PronosticRepository implements IRepository<Pronostic> {
 
-	@Autowired
-	private DataSource dataSource;
+
 
 	@Autowired
 	private GameRepository gameRepo;
 	@Autowired
 	private UserRepository userRepo;
 	private JdbcTemplate jdbcTemplate;
-	private SimpleJdbcInsert jdbcInsert;
 
-	@PostConstruct
-	private void postConstruct() {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("PRONOSTIC")
-				.usingGeneratedKeyColumns("pronostic_id");
-	}
+//	private SimpleJdbcInsert jdbcInsert;
 
 	@Override
-	public void save(Pronostic t) {
+	public int save(Pronostic t) {
 		// TODO Auto-generated method stub
+		return 0;
 
 	}
 
@@ -54,14 +49,15 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	}
 
 	@Override
-	public void delete(long id) {
+	public int delete(long id) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void update(Pronostic t) {
+	public int update(Pronostic t) {
 		// TODO Auto-generated method stub
+		return 0;
 
 	}
 
@@ -92,4 +88,5 @@ public class PronosticRepository implements IRepository<Pronostic> {
 		}
 		return null;
 	}
+
 }

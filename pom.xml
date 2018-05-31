@@ -5,22 +5,62 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
+  <properties>
+  	<spring.version>5.0.6.RELEASE</spring.version>
+  	<spring.data.version>2.0.7.RELEASE</spring.data.version>
+  	<spring.boot.version>2.0.0.RELEASE</spring.boot.version>
+  	<hibernate.core>5.3.1.Final</hibernate.core>
+  	<hibernate.commons.annotations>5.0.3.Final</hibernate.commons.annotations>
+  </properties>
   <dependencies>
 	  <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
+<!--         <dependency> -->
+<!--             <groupId>org.springframework.data</groupId> -->
+<!--             <artifactId>spring-data-jpa</artifactId> -->
+<!--             <version>${spring.data.version}</version> -->
+<!--         </dependency> -->
+	  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+		    <version>${spring.boot.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.springframework.boot</groupId> -->
+<!-- 		    <artifactId>spring-boot-starter-data-jpa</artifactId> -->
+<!-- 		    <version>${spring.boot.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+		    <version>${spring.boot.version}</version>
+	    </dependency>
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.ext/jersey-spring3 -->
+		<dependency>
+		    <groupId>org.glassfish.jersey.ext</groupId>
+		    <artifactId>jersey-spring3</artifactId>
+		    <version>2.25.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -37,6 +77,14 @@
 			<artifactId>jersey-container-servlet-core</artifactId>
 			<version>2.22.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>servlet-api</artifactId>
+		    <version>2.5</version>
+		    <scope>provided</scope>
+		</dependency>
+
   </dependencies>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
