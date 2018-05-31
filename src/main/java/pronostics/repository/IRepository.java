@@ -6,11 +6,11 @@ public interface IRepository<T> {
 	
 	T findById(long id);
 	
-	void save(T t);
+	int save(T t);
 	
-	void delete(long id);
+	int delete(long id);
 	
-	void update(T t);
+	int update(T t);
 	
 	List<T> findAll();
 }
