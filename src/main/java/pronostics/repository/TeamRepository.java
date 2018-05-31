@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.stereotype.Repository;
 
 import pronostics.model.Team;
@@ -27,22 +28,27 @@ public class TeamRepository implements IRepository<Team> {
 	private static final String updateQuery = teamBuilder.buildUpdateQuery();
 	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
 
+
 	@PostConstruct
 	private void postConstruct() {
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 	}
 
 	@Override
 	public int save(Team t) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
 
 	@Override
 	public Team findById(long id) {
+
 		List<Team> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
 			return toTeam(resultSet);
 		});
+
 
 		if (games.size() == 1) {
 			return games.get(0);
@@ -60,6 +66,7 @@ public class TeamRepository implements IRepository<Team> {
 	public int update(Team t) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
 
 	@Override
@@ -67,6 +74,7 @@ public class TeamRepository implements IRepository<Team> {
 		return jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
 			return toTeam(resultSet);
 		});
+
 	}
 
 	/**
@@ -93,5 +101,4 @@ public class TeamRepository implements IRepository<Team> {
 		}
 		return null;
 	}
-
 }

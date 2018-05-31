@@ -4,16 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 
 import pronostics.model.Game;
 import pronostics.model.Pronostic;
 import pronostics.model.User;
 
+
 @Repository
 public class PronosticRepository implements IRepository<Pronostic> {
+
 
 
 	@Autowired
@@ -21,12 +25,14 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	@Autowired
 	private UserRepository userRepo;
 	private JdbcTemplate jdbcTemplate;
+
 //	private SimpleJdbcInsert jdbcInsert;
 
 	@Override
 	public int save(Pronostic t) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
 
 	@Override
@@ -52,6 +58,7 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	public int update(Pronostic t) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
 
 	@Override

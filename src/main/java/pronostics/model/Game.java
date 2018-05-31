@@ -9,6 +9,7 @@ import javax.persistence.Id;
 public class Game {
 
 	@Id
+
 	private int id;
 	private Date date;
 	private String tv;
@@ -142,11 +143,13 @@ public class Game {
 	public String toString() {
 		// Game (15) le 29/12/1992 sur TF1 a BOLAERT
 		// 		FRANCE 0 - 0 BELGIQUE
+
 		String teamName1 = getTeam1() != null ? getTeam1().getName() : "404";
 		String teamName2 = getTeam2() != null ? getTeam2().getName() : "404";
 		String str = "Game (" + getId() + ") le " + getDate().toString() + " sur " + getTv() + " a " + getStadium()
 				+ "\n\t " + teamName1 + " " + getGoalTeam1() + " - " + getGoalTeam2() + " " + teamName2 + "\n";
 		System.out.println(str);
 		return str;
+
 	}
 }

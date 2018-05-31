@@ -10,16 +10,21 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+
 import org.springframework.stereotype.Repository;
 
 import pronostics.model.Game;
 import pronostics.model.Team;
+
 import pronostics.repository.sqlBuilder.GameSQLBuilder;
+
 
 @Repository
 public class GameRepository implements IRepository<Game> {
 
 	@Autowired
+
 	private TeamRepository teamRepository;
 	@Autowired 
 	DataSource dataSource;
@@ -39,9 +44,11 @@ public class GameRepository implements IRepository<Game> {
 
 	@Override
 	public Game findById(long id) {
+
 		List<Game> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
 			return toGame(resultSet);
 		});
+
 
 		if (games.size() == 1) {
 			return games.get(0);
@@ -50,6 +57,7 @@ public class GameRepository implements IRepository<Game> {
 	}
 
 	@Override
+
 	public List<Game> findAll() {
 		return jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
 			return toGame(resultSet);
@@ -71,6 +79,7 @@ public class GameRepository implements IRepository<Game> {
 	@Override
 	public int delete(long id) {
 		return jdbcTemplate.update(deleteQuery, new Object[] { id });
+
 	}
 
 	private Game toGame(ResultSet resultSet) {
@@ -80,6 +89,7 @@ public class GameRepository implements IRepository<Game> {
 			game.setDate((Timestamp) resultSet.getTimestamp("game_date"));
 			game.setTv(resultSet.getString("tv"));
 			game.setStadium(resultSet.getString("game_stadium"));
+
 			
 			Long teamId1 = (Long) resultSet.getLong("team_id_1");
 			Team team1 = teamRepository.findById(teamId1);
@@ -95,12 +105,15 @@ public class GameRepository implements IRepository<Game> {
 			} else {
 				System.err.println("Team " + teamId2 + " not found");
 			}
+
 			game.setGoalTeam1((Integer) resultSet.getInt("goal_team_1"));
 			game.setGoalTeam2((Integer) resultSet.getInt("goal_team_2"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return game;
+
 	}
 
 }
