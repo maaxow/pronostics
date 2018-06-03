@@ -5,11 +5,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import org.springframework.stereotype.Repository;
 
 import pronostics.model.Team;
@@ -18,8 +17,8 @@ import pronostics.repository.sqlBuilder.TeamSQLBuilder;
 @Repository
 public class TeamRepository implements IRepository<Team> {
 
-	@Autowired
-	DataSource dataSource;
+	@Inject
+	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
 	private static final TeamSQLBuilder teamBuilder = new TeamSQLBuilder();
 	private static final String findByIdQuery = teamBuilder.buildFindByIdQuery();
@@ -28,54 +27,74 @@ public class TeamRepository implements IRepository<Team> {
 	private static final String updateQuery = teamBuilder.buildUpdateQuery();
 	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
 
-
 	@PostConstruct
 	private void postConstruct() {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-
-	}
-
-	@Override
-	public int save(Team t) {
-		// TODO Auto-generated method stub
-		return 0;
-
 	}
 
 	@Override
 	public Team findById(long id) {
-
-		List<Team> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
+		List<Team> teams = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
 			return toTeam(resultSet);
 		});
 
-
-		if (games.size() == 1) {
-			return games.get(0);
+//		closeConnection();
+		if (teams.size() == 1) {
+			return teams.get(0);
 		}
 		return null;
 	}
 
 	@Override
+	public List<Team> findAll() {
+		List<Team> teams = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
+			return toTeam(resultSet);
+		}); 
+//		closeConnection();
+		return teams;
+		
+	}
+	
+	@Override
+	public int save(Team t) {
+		int nbRowAffected = jdbcTemplate.update(saveQuery, new Object[] {
+				t.getName(),
+				t.getGroup(),
+				t.getNbGame(),
+				t.getNbWin(),
+				t.getNbDraw(),
+				t.getNbLose(),
+				t.getGoalScored(),
+				t.getGoalTaken(),
+				t.getPoint(),
+		}); 
+		return nbRowAffected;
+		
+	}
+	
+	@Override
 	public int delete(long id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int nbRowAffected = jdbcTemplate.update(deleteQuery, new Object[] {id}); 
+		return nbRowAffected;
 	}
 
 	@Override
 	public int update(Team t) {
-		// TODO Auto-generated method stub
-		return 0;
-
+		int nbRowAffected = jdbcTemplate.update(updateQuery, new Object[] {
+				t.getName(),
+				t.getGroup(),
+				t.getNbGame(),
+				t.getNbWin(),
+				t.getNbDraw(),
+				t.getNbLose(),
+				t.getGoalScored(),
+				t.getGoalTaken(),
+				t.getPoint(),
+				t.getId()
+		}); 
+		return nbRowAffected;
 	}
 
-	@Override
-	public List<Team> findAll() {
-		return jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
-			return toTeam(resultSet);
-		});
-
-	}
 
 	/**
 	 * mapping method, SQL -> Java
@@ -101,4 +120,14 @@ public class TeamRepository implements IRepository<Team> {
 		}
 		return null;
 	}
+	
+	// private void closeConnection() {
+	// try {
+	// dataSource.getConnection().close();
+	// } catch (SQLException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+
 }

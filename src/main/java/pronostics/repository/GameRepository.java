@@ -6,28 +6,23 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-
 import org.springframework.stereotype.Repository;
 
 import pronostics.model.Game;
 import pronostics.model.Team;
-
 import pronostics.repository.sqlBuilder.GameSQLBuilder;
-
 
 @Repository
 public class GameRepository implements IRepository<Game> {
 
-	@Autowired
-
+	@Inject
+	private DataSource dataSource;
+	@Inject
 	private TeamRepository teamRepository;
-	@Autowired 
-	DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
 
 	private static final GameSQLBuilder gameBuilder = new GameSQLBuilder();
@@ -40,16 +35,14 @@ public class GameRepository implements IRepository<Game> {
 	@PostConstruct
 	private void postConstruct() {
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 	}
 
 	@Override
 	public Game findById(long id) {
-
 		List<Game> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
 			return toGame(resultSet);
 		});
-
-
 		if (games.size() == 1) {
 			return games.get(0);
 		}
@@ -59,9 +52,11 @@ public class GameRepository implements IRepository<Game> {
 	@Override
 
 	public List<Game> findAll() {
-		return jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
+		List<Game> games = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
 			return toGame(resultSet);
 		});
+		closeConnection();
+		return games;
 	}
 
 	@Override
@@ -90,17 +85,16 @@ public class GameRepository implements IRepository<Game> {
 			game.setTv(resultSet.getString("tv"));
 			game.setStadium(resultSet.getString("game_stadium"));
 
-			
 			Long teamId1 = (Long) resultSet.getLong("team_id_1");
 			Team team1 = teamRepository.findById(teamId1);
-			if(team1 != null) {
+			if (team1 != null) {
 				game.setTeam1(team1);
 			} else {
 				System.err.println("Team " + teamId1 + " not found");
 			}
 			Long teamId2 = (Long) resultSet.getLong("team_id_2");
 			Team team2 = teamRepository.findById(teamId2);
-			if(team2 == null) {
+			if (team2 == null) {
 				game.setTeam2(team2);
 			} else {
 				System.err.println("Team " + teamId2 + " not found");
@@ -114,6 +108,15 @@ public class GameRepository implements IRepository<Game> {
 
 		return game;
 
+	}
+
+	private void closeConnection() {
+		try {
+			dataSource.getConnection().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -11,26 +11,21 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Component;
 
-import pronostics.model.Game;
-import pronostics.repository.GameRepository;
-import pronostics.service.GameService;
+import pronostics.model.Team;
+import pronostics.repository.TeamRepository;
 
 @Component
-@Path("/game")
-public class GameRestService {
+@Path("/team")
+public class TeamRestService {
 
 	@Inject
-	private GameRepository gameRepository;
-
-	@Inject
-	private GameService gameService;
+	private TeamRepository teamRepository;
 
 	@GET
 	public Response findAll() {
-		if (gameRepository != null) {
-			List<Game> games = gameRepository.findAll();
+		if (teamRepository != null) {
+			List<Team> games = teamRepository.findAll();
 			System.out.println(games.toString());
-			gameService.printSomeStuff();
 			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
@@ -40,13 +35,13 @@ public class GameRestService {
 	@GET
 	@Path("/{id}")
 	public Response findByIdToto(@PathParam("id") String id) {
-		if (gameRepository != null) {
-			Game game = gameRepository.findById(Long.parseLong(id));
-			System.out.println("[" + this.hashCode() + "] " + game.toString());
-			gameService.printSomeStuff();
-			return Response.ok(game).build();
+		if (teamRepository != null) {
+			Team team = teamRepository.findById(Long.parseLong(id));
+			System.out.println("[" + this.hashCode() + "] " + team.toString());
+			return Response.ok(team).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+
 }

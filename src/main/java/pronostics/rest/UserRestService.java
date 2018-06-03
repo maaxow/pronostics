@@ -11,26 +11,21 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Component;
 
-import pronostics.model.Game;
-import pronostics.repository.GameRepository;
-import pronostics.service.GameService;
+import pronostics.model.User;
+import pronostics.repository.UserRepository;
 
 @Component
-@Path("/game")
-public class GameRestService {
+@Path("/user")
+public class UserRestService {
 
 	@Inject
-	private GameRepository gameRepository;
-
-	@Inject
-	private GameService gameService;
+	private UserRepository userRepository;
 
 	@GET
 	public Response findAll() {
-		if (gameRepository != null) {
-			List<Game> games = gameRepository.findAll();
+		if (userRepository != null) {
+			List<User> games = userRepository.findAll();
 			System.out.println(games.toString());
-			gameService.printSomeStuff();
 			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
@@ -40,13 +35,13 @@ public class GameRestService {
 	@GET
 	@Path("/{id}")
 	public Response findByIdToto(@PathParam("id") String id) {
-		if (gameRepository != null) {
-			Game game = gameRepository.findById(Long.parseLong(id));
+		if (userRepository != null) {
+			User game = userRepository.findById(Long.parseLong(id));
 			System.out.println("[" + this.hashCode() + "] " + game.toString());
-			gameService.printSomeStuff();
 			return Response.ok(game).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+
 }
