@@ -22,12 +22,12 @@
 			url: "match",
 			views : {
 				'main@home' : {
-					templateUrl: paths.views + '/match.html',
+					templateUrl: 'components/match/match.html',
 					controller : 'MatchController',
 				}
 			}
 		})
-		.state('login', {
+		.state('home.login', {
 				url: "/login",
 				templateUrl: 'components/login/login.html',
 				controller: 'LoginController'

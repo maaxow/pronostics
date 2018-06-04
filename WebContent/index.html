@@ -8,6 +8,7 @@
 	<script src="lib/angularjs-1.6.10/angular.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
 	<script src="directives/toolbar/toolbar.js"></script>
+	<script src="components/login/login.js"></script>
 	<script src="js/main.js"></script>
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
@@ -15,6 +16,8 @@
 </head>
 <body ng-app="pronostic">
 	<pronostic:toolbar></pronostic:toolbar>
+	
+	<div ui-view></div>
 	<!-- <div class="skip-navbar"></div>
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		<span class="navbar-brand mb-0 h1">Pronostics</span>
