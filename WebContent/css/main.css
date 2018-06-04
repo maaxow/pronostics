@@ -1,5 +1,10 @@
 .skip-navbar {
-	height: 70px;
+	height: 10px;
+}
+
+.colorNav {
+	height: 60px;
+	background-color: #990000 !important;
 }
 
 .canvas {
