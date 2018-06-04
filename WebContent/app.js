@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	var app = angular.module('app',[]);
+	var app = angular.module('pronostic',['pronostic.directives.toolbar']);
 
 	app.config(['$locationProvider','$stateProvider','$urlRouterProvider', 'paths', function($locationProvider, $stateProvider, $urlRouterProvider, paths) {
 		$stateProvider
@@ -29,7 +29,7 @@
 		})
 		.state('login', {
 				url: "/login",
-				templateUrl: paths.views + '/login.html',
+				templateUrl: 'components/login/login.html',
 				controller: 'LoginController'
 		});
 		
