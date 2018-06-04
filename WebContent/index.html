@@ -3,21 +3,25 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Pronostics</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="lib/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 	<script src="lib/bootstrap-4.1.1/js/bootstrap.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
+	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
 	<script src="directives/toolbar/toolbar.js"></script>
 	<script src="components/login/login.js"></script>
 	<script src="js/main.js"></script>
-	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
 	<script src="app.js"></script>
+	<base href="/pronostics">
 </head>
-<body ng-app="pronostic">
-	<pronostic:toolbar></pronostic:toolbar>
+<body ng-app="pronostic" ng-controller="HomeController">
 	
-	<div ui-view></div>
+	<div style="margin-top:100px">
+		{{message}}
+	</div>
+	<pronostic:toolbar></pronostic:toolbar>
+<!-- 	<div ui-view></div> -->
 	<!-- <div class="skip-navbar"></div>
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		<span class="navbar-brand mb-0 h1">Pronostics</span>
@@ -42,50 +46,50 @@
 		</div>
 	</nav> -->
 	
-	<div class="col-lg-8 offset-lg-2">
-		<div class="card">
-			<h2 class="card-header text-center">Groupe A</h2>
-			<div class="card-body">
-				<table class="table">
-					<tr>
-						<th>Id</th>
-						<th>Equipe</th>
-						<th>Groupe</th>
-						<th>Nombre match joué</th>
-						<th>Gagné</th>
-						<th>Nul</th>
-						<th>Perdu</th>
-						<th>But marqué</th>
-						<th>But pris</th>
-						<th>point</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>France</td>
-						<td>A</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Maroc</td>
-						<td>A</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+<!-- 	<div class="col-lg-8 offset-lg-2"> -->
+<!-- 		<div class="card"> -->
+<!-- 			<h2 class="card-header text-center">Groupe A</h2> -->
+<!-- 			<div class="card-body"> -->
+<!-- 				<table class="table"> -->
+<!-- 					<tr> -->
+<!-- 						<th>Id</th> -->
+<!-- 						<th>Equipe</th> -->
+<!-- 						<th>Groupe</th> -->
+<!-- 						<th>Nombre match joué</th> -->
+<!-- 						<th>Gagné</th> -->
+<!-- 						<th>Nul</th> -->
+<!-- 						<th>Perdu</th> -->
+<!-- 						<th>But marqué</th> -->
+<!-- 						<th>But pris</th> -->
+<!-- 						<th>point</th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>France</td> -->
+<!-- 						<td>A</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>2</td> -->
+<!-- 						<td>Maroc</td> -->
+<!-- 						<td>A</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 						<td>0</td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 </body>
 </html>
