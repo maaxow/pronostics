@@ -101,7 +101,7 @@ public class PronosticRepository implements IRepository<Pronostic> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return prono;
 	}
 
 }

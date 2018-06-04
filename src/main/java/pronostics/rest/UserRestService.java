@@ -26,7 +26,7 @@ public class UserRestService {
 		if (userRepository != null) {
 			List<User> games = userRepository.findAll();
 			System.out.println(games.toString());
-			return Response.ok(games).build();
+			return Response.ok(games.toString()).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

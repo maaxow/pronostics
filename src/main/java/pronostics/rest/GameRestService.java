@@ -31,7 +31,7 @@ public class GameRestService {
 			List<Game> games = gameRepository.findAll();
 			System.out.println(games.toString());
 			gameService.printSomeStuff();
-			return Response.ok(games).build();
+			return Response.ok(games.toString()).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -42,9 +42,8 @@ public class GameRestService {
 	public Response findByIdToto(@PathParam("id") String id) {
 		if (gameRepository != null) {
 			Game game = gameRepository.findById(Long.parseLong(id));
-			System.out.println("[" + this.hashCode() + "] " + game.toString());
-			gameService.printSomeStuff();
-			return Response.ok(game).build();
+//			System.out.println("[" + this.hashCode() + "] " + game.toString());
+			return Response.ok(game.toString()).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

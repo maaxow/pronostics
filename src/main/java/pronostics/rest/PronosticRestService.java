@@ -26,7 +26,7 @@ public class PronosticRestService {
 		if (pronosticRepository != null) {
 			List<Pronostic> games = pronosticRepository.findAll();
 			System.out.println(games.toString());
-			return Response.ok(games).build();
+			return Response.ok(games.toString()).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

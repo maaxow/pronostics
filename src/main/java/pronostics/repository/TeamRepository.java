@@ -38,9 +38,10 @@ public class TeamRepository implements IRepository<Team> {
 			return toTeam(resultSet);
 		});
 
-//		closeConnection();
 		if (teams.size() == 1) {
-			return teams.get(0);
+			if(teams.get(0) != null) {
+				return teams.get(0);
+			}
 		}
 		return null;
 	}
@@ -50,7 +51,6 @@ public class TeamRepository implements IRepository<Team> {
 		List<Team> teams = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
 			return toTeam(resultSet);
 		}); 
-//		closeConnection();
 		return teams;
 		
 	}
@@ -118,7 +118,7 @@ public class TeamRepository implements IRepository<Team> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return team;
 	}
 	
 	// private void closeConnection() {

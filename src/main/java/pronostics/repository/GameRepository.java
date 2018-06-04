@@ -50,12 +50,10 @@ public class GameRepository implements IRepository<Game> {
 	}
 
 	@Override
-
 	public List<Game> findAll() {
 		List<Game> games = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
 			return toGame(resultSet);
 		});
-		closeConnection();
 		return games;
 	}
 
@@ -94,7 +92,7 @@ public class GameRepository implements IRepository<Game> {
 			}
 			Long teamId2 = (Long) resultSet.getLong("team_id_2");
 			Team team2 = teamRepository.findById(teamId2);
-			if (team2 == null) {
+			if (team2 != null) {
 				game.setTeam2(team2);
 			} else {
 				System.err.println("Team " + teamId2 + " not found");
@@ -109,14 +107,4 @@ public class GameRepository implements IRepository<Game> {
 		return game;
 
 	}
-
-	private void closeConnection() {
-		try {
-			dataSource.getConnection().close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }

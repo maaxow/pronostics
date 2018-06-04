@@ -81,7 +81,7 @@ public class UserRepository implements IRepository<User> {
 	private User toUser(ResultSet resultSet) {
 		User user = new User();
 		try {
-			user.setId((Integer) resultSet.getInt("team_id"));
+			user.setId((Integer) resultSet.getInt("user_id"));
 			user.setUsername(resultSet.getString("username"));
 			user.setPassword(resultSet.getString("password"));
 			user.setFirstname(resultSet.getString("firstname"));
