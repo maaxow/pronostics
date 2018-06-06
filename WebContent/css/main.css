@@ -1,5 +1,5 @@
 .skip-navbar {
-	height: 10px;
+	height: 30px;
 }
 
 .colorNav {
@@ -15,4 +15,21 @@
 
 .flag {
 	display: none;
+}
+
+.title {
+	color: #990000;
+}
+.broadway {
+	font-family: Broadway;
+}
+
+.bauhaus-93 {
+	font-family: "Bauhaus 93";
+}
+
+.logo-header {
+    max-height: 95px; /* 195.5 */
+    max-width: 88px; /* 177 */
+    margin: 5px
 }

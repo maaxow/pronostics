@@ -1,12 +1,9 @@
 package pronostics.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class User implements Serializable {
+public class User {
 
 	private int id;
 	private String username;
@@ -88,7 +85,7 @@ public class User implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getUsername() + " " + getFirstname() + " " + getLastname();

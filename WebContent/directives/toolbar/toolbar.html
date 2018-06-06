@@ -1,20 +1,43 @@
-<nav class=" colorNav navbar fixed-top navbar-expand-lg navbar-light bg-light">
-	<span class="navbar-brand mb-0 h1">Pronostics {{message}}</span>
-	
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" style="cursor: pointer" data-ui-sref="home.match">Matches</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="home">Groupes</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-ref="home.finale">Finales</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Classement</a>
-			</li>
-		</ul>
+<div>
+	<div class="row align-items-end">
+		<div class="col-lg-1">
+			<img class="logo-header"alt="logo coupe du monde" src="img/FIFA_World_Cup_2018_Logo.png" >
+		</div>
+		<div class="col-lg-4">
+			<h1 class="title broadway">La Casa del Pronostico</h1>
+		</div>
+		
+		<div class="col-lg-3 offset-lg-4">
+			<div class="justify-content-start">
+				<span style="font-size: 20px">John Doe </span>
+				<i class="material-icons">person</i>
+			</div>
+			<div class="justify-content-end">
+				<i class="material-icons">power_settings_new</i>
+			</div>
+		</div>
 	</div>
-</nav>
+	<nav class="colorNav navbar navbar-expand-lg bg-light center">
+		
+		<div id="navbarNav" class="justify-content-center">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="bauhaus-93 nav-link" data-ui-sref="home.pronostic">Pronostiques</a>
+				</li>
+				<li class="nav-item">
+					<a class="bauhaus-93 nav-link" data-ui-sref="home.calendar">Calendrier</a>
+				</li>
+				<li class="nav-item">
+					<a class="bauhaus-93 nav-link" href="home.classement">Classement</a>
+				</li>
+				<li class="nav-item">
+					<a class="bauhaus-93 nav-link" ui-ref="home.finale">Tableau final</a>
+				</li>
+				<li class="nav-item">
+					<a class="bauhaus-93 nav-link" ui-sref="home.groupe">Groupes</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<div class="skip-navbar"></div>

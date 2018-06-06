@@ -2,9 +2,16 @@ angular.module('pronostic.rest.service.user', [])
 .service('$user', ['$http', function($http){
 	return {
 		getAll : function(){
-			$http.get('/rest/user').then(function(response){
-				console.log("$user.getAll() = ", response.data);
-			});
+			return $http.get('/rest/user');
+		},
+		get: function(id){
+			return $http.get('/rest/user/'+id);
+		},
+		save : function(user){
+			return $http.put('/rest/user', {user: user});
+		},
+		update : function(user){
+			return $http.post('/rest/user', {user: user});
 		}
 	};
 }]);

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import pronostics.model.Group;
 import pronostics.model.Team;
 import pronostics.repository.sqlBuilder.TeamSQLBuilder;
 
@@ -26,6 +27,7 @@ public class TeamRepository implements IRepository<Team> {
 	private static final String saveQuery = teamBuilder.buildSaveQuery();
 	private static final String updateQuery = teamBuilder.buildUpdateQuery();
 	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
+	private static final String findByGroupeQuery = "SELECT * FROM Team WHERE groupe = ?";
 
 	@PostConstruct
 	private void postConstruct() {
@@ -94,6 +96,13 @@ public class TeamRepository implements IRepository<Team> {
 		}); 
 		return nbRowAffected;
 	}
+	
+	public List<Team> findByGroup(String groupe) {
+		List<Team> teams = jdbcTemplate.query(findByGroupeQuery, new Object[] { groupe }, (resultSet, i) -> {
+			return toTeam(resultSet);
+		});
+		return teams;
+	}
 
 
 	/**
@@ -107,7 +116,8 @@ public class TeamRepository implements IRepository<Team> {
 		try {
 			team.setId((Integer) resultSet.getInt("team_id"));
 			team.setName(resultSet.getString("name"));
-			team.setGroup(resultSet.getString("groupe"));
+			String group = resultSet.getString("groupe"); 
+			team.setGroup(Group.valueOf(group));
 			team.setNbGame((Integer) resultSet.getInt("nb_game"));
 			team.setNbWin((Integer) resultSet.getInt("nb_win"));
 			team.setNbDraw((Integer) resultSet.getInt("nb_draw"));

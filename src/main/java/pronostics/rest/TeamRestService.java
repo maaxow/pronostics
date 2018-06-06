@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import pronostics.model.Team;
@@ -41,6 +42,18 @@ public class TeamRestService {
 			Team team = teamRepository.findById(Long.parseLong(id));
 			System.out.println("[" + this.hashCode() + "] " + team.toString());
 			return Response.ok(team).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	@GET
+	@Path("/groupe/{groupe}")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response findByGroupe(@PathParam("groupe") String groupe) {
+		if (teamRepository != null) {
+			List<Team> game = teamRepository.findByGroup(groupe);
+			return Response.ok(game).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

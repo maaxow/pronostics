@@ -8,44 +8,28 @@
 	<script src="lib/angularjs-1.6.10/angular.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/material-icons/material-icons.css">
 	<link rel="stylesheet" href="css/main.css">
+	
+<!-- 	REST SERVICE -->
 	<script src="components/rest/user.rest.service.js"></script>
+	<script src="components/rest/game.rest.service.js"></script>
+	<script src="components/rest/team.rest.service.js"></script>
+	<script src="components/rest/rest.service.js"></script>
+<!-- 	DIRECTIVES -->
 	<script src="directives/toolbar/toolbar.js"></script>
+<!-- 	COMPONENTS -->
 	<script src="components/login/login.js"></script>
+	<script src="components/groupe/groupe.js"></script>
 	<script src="js/main.js"></script>
+	<script src="constants.js"></script>
 	<script src="app.js"></script>
-	<base href="/">
+	<base href="/pronostics/">
 </head>
 <body ng-app="pronostic" ng-controller="HomeController">
 	
-	<div style="margin-top:100px">
-		<button class="btn btn-primary" ng-click="getAllUser()">Get all user</button>
-	</div>
 	<pronostic:toolbar></pronostic:toolbar>
-<!-- 	<div ui-view></div> -->
-	<!-- <div class="skip-navbar"></div>
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-		<span class="navbar-brand mb-0 h1">Pronostics</span>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" style="cursor: pointer" data-ui-sref="home.match" data-ng-click="make()">Matches <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" href="index.html">Groupes</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="components/finales/finales.html">Finales</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Classement</a>
-				</li>
-			</ul>
-		</div>
-	</nav> -->
+	<div ui-view></div>
 	
 <!-- 	<div class="col-lg-8 offset-lg-2"> -->
 <!-- 		<div class="card"> -->

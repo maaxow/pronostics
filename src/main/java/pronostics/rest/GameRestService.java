@@ -6,14 +6,15 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import pronostics.model.Game;
 import pronostics.repository.GameRepository;
-import pronostics.service.GameService;
 
 @Component
 @Path("/game")
@@ -22,16 +23,12 @@ public class GameRestService {
 	@Inject
 	private GameRepository gameRepository;
 
-	@Inject
-	private GameService gameService;
-
 	@GET
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
 	public Response findAll() {
 		if (gameRepository != null) {
 			List<Game> games = gameRepository.findAll();
-			System.out.println(games.toString());
-			gameService.printSomeStuff();
-			return Response.ok(games.toString()).build();
+			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -39,13 +36,14 @@ public class GameRestService {
 
 	@GET
 	@Path("/{id}")
-	public Response findByIdToto(@PathParam("id") String id) {
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response findById(@PathParam("id") String id) {
 		if (gameRepository != null) {
 			Game game = gameRepository.findById(Long.parseLong(id));
-//			System.out.println("[" + this.hashCode() + "] " + game.toString());
-			return Response.ok(game.toString()).build();
+			return Response.ok(game).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	
 }
