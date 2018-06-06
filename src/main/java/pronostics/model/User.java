@@ -1,6 +1,12 @@
 package pronostics.model;
 
-public class User {
+import java.io.Serializable;
+
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class User implements Serializable {
 
 	private int id;
 	private String username;

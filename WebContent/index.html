@@ -9,16 +9,17 @@
 	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
+	<script src="components/rest/user.rest.service.js"></script>
 	<script src="directives/toolbar/toolbar.js"></script>
 	<script src="components/login/login.js"></script>
 	<script src="js/main.js"></script>
 	<script src="app.js"></script>
-	<base href="/pronostics">
+	<base href="/">
 </head>
 <body ng-app="pronostic" ng-controller="HomeController">
 	
 	<div style="margin-top:100px">
-		{{message}}
+		<button class="btn btn-primary" ng-click="getAllUser()">Get all user</button>
 	</div>
 	<pronostic:toolbar></pronostic:toolbar>
 <!-- 	<div ui-view></div> -->
