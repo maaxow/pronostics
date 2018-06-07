@@ -19,6 +19,7 @@
 
 .title {
 	color: #990000;
+	cursor: pointer;
 }
 .broadway {
 	font-family: Broadway;
@@ -32,4 +33,17 @@
     max-height: 95px; /* 195.5 */
     max-width: 88px; /* 177 */
     margin: 5px
+}
+
+.largeTable {
+	width:100%
+}
+
+.toolbarNav {
+	font-size: 25px;
+}
+
+.toolbarItem {
+	font-family: "Bauhaus 93";
+	color: white;
 }
