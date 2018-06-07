@@ -1,4 +1,4 @@
-angular.module('pronostic.controllers.home', ['pronostic.rest.service'])
+angular.module('pronostic.controllers.home', ['pronostic.rest.service', 'pronostic.controllers.group'])
 	.controller("HomeController", ['$scope', '$user', '$game', '$team', 'PRONO', 
 		function($scope, $user, $game, $team, PRONO){
 			console.log("HomeController");
@@ -12,7 +12,7 @@ angular.module('pronostic.controllers.home', ['pronostic.rest.service'])
 			}
 }]);
 
-angular.module('pronostic',['ui.router', 
+angular.module('pronostic',['ui.router', 'pronostic.rest.service', 
 	'pronostic.controllers.home', 
 	'pronostic.directives.toolbar', 'pronostics.constants'])
 	.config(['$locationProvider','$stateProvider','$urlRouterProvider', 'PRONO',

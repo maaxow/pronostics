@@ -1,3 +1,39 @@
 <div>
-	<h1>Groupes</h1>
+	<div class="accordion col-lg-8 offset-lg-2" id="groupAccordion">
+		<div class="card" ng-repeat="(group, list) in groups">
+			<div class="card-header text-center" id="headingOne">
+				<h2 class="mb-0">
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+						Groupe {{group}}
+					</button>
+				</h2>
+			</div>
+			<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+				<div class="card-body">
+					<table class="largeTable">
+						<tr>
+							<th>Nom</th>
+							<th>Match joues</th>
+							<th>Match gagnes</th>
+							<th>Match nul</th>
+							<th>Match perdu</th>
+							<th>But marque</th>
+							<th>But pris</th>
+							<th>Point</th>
+						</tr>
+						<tr ng-repeat="team in list">
+							<td>{{team.name}}</td>
+							<td>{{team.nbGame}}</td>
+							<td>{{team.nbWin}}</td>
+							<td>{{team.nbDraw}}</td>
+							<td>{{team.nbLose}}</td>
+							<td>{{team.goalScored}}</td>
+							<td>{{team.goalTaken}}</td>
+							<td>{{team.point}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

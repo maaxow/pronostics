@@ -24,11 +24,11 @@ public class TeamRestService {
 	private TeamRepository teamRepository;
 
 	@GET
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
 	public Response findAll() {
 		if (teamRepository != null) {
-			List<Team> games = teamRepository.findAll();
-			System.out.println(games.toString());
-			return Response.ok(games.toString()).build();
+			List<Team> teams = teamRepository.findAll();
+			return Response.ok(teams).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -36,11 +36,10 @@ public class TeamRestService {
 
 	@GET
 	@Path("/{id}")
-	@Produces("text/html")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
 	public Response findByIdToto(@PathParam("id") String id) {
 		if (teamRepository != null) {
 			Team team = teamRepository.findById(Long.parseLong(id));
-			System.out.println("[" + this.hashCode() + "] " + team.toString());
 			return Response.ok(team).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
