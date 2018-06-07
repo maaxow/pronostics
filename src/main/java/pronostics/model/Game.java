@@ -2,13 +2,10 @@ package pronostics.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
+@XmlRootElement
 public class Game {
-
-	@Id
 
 	private int id;
 	private Date date;

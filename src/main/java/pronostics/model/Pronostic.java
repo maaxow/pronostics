@@ -1,5 +1,8 @@
 package pronostics.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Pronostic {
 
 	private int id;

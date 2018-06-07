@@ -1,8 +1,5 @@
 package pronostics.repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import pronostics.model.Game;
-import pronostics.model.Team;
 import pronostics.repository.sqlBuilder.GameSQLBuilder;
+import pronostics.service.GameService;
 
 @Repository
 public class GameRepository implements IRepository<Game> {
@@ -22,7 +19,7 @@ public class GameRepository implements IRepository<Game> {
 	@Inject
 	private DataSource dataSource;
 	@Inject
-	private TeamRepository teamRepository;
+	public GameService gameService;
 	private JdbcTemplate jdbcTemplate;
 
 	private static final GameSQLBuilder gameBuilder = new GameSQLBuilder();
@@ -41,7 +38,7 @@ public class GameRepository implements IRepository<Game> {
 	@Override
 	public Game findById(long id) {
 		List<Game> games = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
-			return toGame(resultSet);
+			return gameService.toGame(resultSet);
 		});
 		if (games.size() == 1) {
 			return games.get(0);
@@ -52,7 +49,7 @@ public class GameRepository implements IRepository<Game> {
 	@Override
 	public List<Game> findAll() {
 		List<Game> games = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
-			return toGame(resultSet);
+			return gameService.toGame(resultSet);
 		});
 		return games;
 	}
@@ -75,36 +72,4 @@ public class GameRepository implements IRepository<Game> {
 
 	}
 
-	private Game toGame(ResultSet resultSet) {
-		Game game = new Game();
-		try {
-			game.setId((Integer) resultSet.getInt("game_id"));
-			game.setDate((Timestamp) resultSet.getTimestamp("game_date"));
-			game.setTv(resultSet.getString("tv"));
-			game.setStadium(resultSet.getString("game_stadium"));
-
-			Long teamId1 = (Long) resultSet.getLong("team_id_1");
-			Team team1 = teamRepository.findById(teamId1);
-			if (team1 != null) {
-				game.setTeam1(team1);
-			} else {
-				System.err.println("Team " + teamId1 + " not found");
-			}
-			Long teamId2 = (Long) resultSet.getLong("team_id_2");
-			Team team2 = teamRepository.findById(teamId2);
-			if (team2 != null) {
-				game.setTeam2(team2);
-			} else {
-				System.err.println("Team " + teamId2 + " not found");
-			}
-
-			game.setGoalTeam1((Integer) resultSet.getInt("goal_team_1"));
-			game.setGoalTeam2((Integer) resultSet.getInt("goal_team_2"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return game;
-
-	}
 }

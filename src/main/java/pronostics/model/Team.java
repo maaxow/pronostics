@@ -1,10 +1,13 @@
 package pronostics.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Team {
 
 	private int id;
 	private String name;
-	private String group;
+	private Group group;
 	private int nbGame;
 	private int nbWin;
 	private int nbDraw;
@@ -46,7 +49,7 @@ public class Team {
 	/**
 	 * @return the group
 	 */
-	public String getGroup() {
+	public Group getGroup() {
 		return group;
 	}
 
@@ -54,7 +57,7 @@ public class Team {
 	 * @param group
 	 *            the group to set
 	 */
-	public void setGroup(String group) {
+	public void setGroup(Group group) {
 		this.group = group;
 	}
 

@@ -1,5 +1,8 @@
 package pronostics.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class User {
 
 	private int id;
@@ -82,7 +85,7 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getUsername() + " " + getFirstname() + " " + getLastname();
