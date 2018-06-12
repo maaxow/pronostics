@@ -1,29 +1,17 @@
-angular.module('pronostic.controllers.home', ['pronostic.rest.service', 'pronostic.controllers.group'])
-	.controller("HomeController", ['$scope', '$user', '$game', '$team', 'PRONO', 
-		function($scope, $user, $game, $team, PRONO){
-			console.log("HomeController");
-//			console.log("Contsntas ", PRONO)
-			$scope.getAllUser = function(){
-				$team.getByGroupe("A").then(function(response){
-					console.log("get groupe A ", response.data)
-				}).catch(function(e){
-					console.log("error", e);
-				});
-			}
-}]);
 
 angular.module('pronostic',['ui.router', 'pronostic.rest.service', 
-	'pronostic.controllers.home', 
-	'pronostic.directives.toolbar', 'pronostics.constants'])
+	'pronostic.controllers', 
+	'pronostic.directives.toolbar', 
+	'pronostics.constants'])
 	.config(['$locationProvider','$stateProvider','$urlRouterProvider', 'PRONO',
 	function($locationProvider, $stateProvider, $urlRouterProvider, PRONO) {
 	$stateProvider
 	.state('home', {
-		url: "/",
+		url: "",
 		controller : 'HomeController'
 	})
 	.state('home.pronostic', {
-		url: "pronostiques",
+		url: "/pronostiques",
 		templateUrl: 'components/pronostic/pronostic.html',
 		controller : 'PronosticController',
 	})
@@ -39,11 +27,11 @@ angular.module('pronostic',['ui.router', 'pronostic.rest.service',
 	})
 	.state('home.finale', {
 		url: "/finale",
-		templateUrl: 'components/finale/finale.html',
+		templateUrl: 'components/finales/finales.html',
 		controller : 'FinaleController'
 	})
 	.state('home.groupe', {
-		url: "groupes",
+		url: "/groupes",
 		templateUrl: 'components/groupe/groupe.html',
 		controller : 'GroupController',
 	})
@@ -55,7 +43,7 @@ angular.module('pronostic',['ui.router', 'pronostic.rest.service',
 	
 
 	// For invalid route
-	$urlRouterProvider.otherwise(PRONO.contextPath);
+	$urlRouterProvider.otherwise("/");
 	// use the HTML5 History API
 	$locationProvider.html5Mode(true);
 

@@ -10,6 +10,8 @@ public class User {
 	private String password;
 	private String firstname;
 	private String lastname;
+	private Role role;
+	private boolean admin = false;
 
 	/**
 	 * @return the id
@@ -86,9 +88,26 @@ public class User {
 		this.lastname = lastname;
 	}
 
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public Role getRole() {
+		return this.role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return getUsername() + " " + getFirstname() + " " + getLastname();
 	}
+	
 
 }
