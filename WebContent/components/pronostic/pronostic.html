@@ -1,3 +1,56 @@
 <h1>Page des pronostiques !</h1>
 
 <p> Test angular : {{test}} </p>
+
+
+<div class="accordion col-lg-6 offset-lg-3" id="groupAccordion">
+	<div class="card-header text-center" id="headingOne">
+		<h2 class="mb-0">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+				Pronostic à faire
+			</button>
+		</h2>
+	</div>
+		<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+				<div class="card-body">
+					<table class="largeTable">
+						<tr>
+							<th><img src="img/flags/France.png" ></th>
+							<th><FORM><SELECT name="game_team_1" size="1">
+							<OPTION>0<OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>
+							</SELECT></FORM></th>
+							<th>16/06 20h</th>
+							<th><FORM><SELECT name="game_team_2" size="1">
+							<OPTION>0<OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>
+							</SELECT></FORM></th>
+							<th><img src="img/flags/Australie.png" ></th>
+						</tr>
+						<tr>
+							<th><input type="submit" name="Submit" value="Envoyer"></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			
+			
+	<div class="card-header text-center" id="headingOne">
+		<h2 class="mb-0">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+				Pronostic fait
+			</button>
+		</h2>
+	</div>
+		<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+				<div class="card-body">
+					<table class="largeTable">
+						<tr>
+							<th><img src="img/flags/Russie.png" ></th>
+							<th>2</th>
+							<th>2</th>
+							<th><img src="img/flags/ArabieSaoudite.png" ></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+	</div>
