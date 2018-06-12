@@ -1,7 +1,5 @@
 package pronostics.repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,12 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import pronostics.model.User;
 import pronostics.repository.sqlBuilder.UserSQLBuilder;
+import pronostics.service.UserService;
 
 @Repository
 public class UserRepository implements IRepository<User> {
 
 	@Inject
 	private DataSource dataSource;
+	@Inject
+	private UserService userService;
 	private JdbcTemplate jdbcTemplate;
 	private static final UserSQLBuilder userBuilder = new UserSQLBuilder();
 	private static final String findByIdQuery = userBuilder.buildFindByIdQuery();
@@ -26,6 +27,7 @@ public class UserRepository implements IRepository<User> {
 	private static final String saveQuery = userBuilder.buildSaveQuery();
 	private static final String updateQuery = userBuilder.buildUpdateQuery();
 	private static final String deleteQuery = userBuilder.buildDeleteQuery();
+	private static final String findByUsernameQuery = "SELECT * FROM Users WHERE username = ?;";
 
 	@PostConstruct
 	private void postConstruct() {
@@ -35,7 +37,7 @@ public class UserRepository implements IRepository<User> {
 	@Override
 	public User findById(long id) {
 		List<User> users = jdbcTemplate.query(findByIdQuery, new Object[] { id }, (resultSet, i) -> {
-			return toUser(resultSet);
+			return userService.toUser(resultSet);
 		});
 
 		if (users.size() == 1) {
@@ -47,11 +49,22 @@ public class UserRepository implements IRepository<User> {
 	@Override
 	public List<User> findAll() {
 		List<User> users = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
-			return toUser(resultSet);
+			return userService.toUser(resultSet);
 		});
 		return users;
 	}
 
+	public User findByUserName(String username) {
+		List<User> users = jdbcTemplate.query(findByUsernameQuery, new Object[] { username }, (resultSet, i) -> {
+			return userService.toUser(resultSet);
+		});
+
+		if (users.size() == 1) {
+			return users.get(0);
+		}
+		return null;
+	}
+	
 	@Override
 	public int save(User t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery,
@@ -70,26 +83,6 @@ public class UserRepository implements IRepository<User> {
 		int nbRowAffected = jdbcTemplate.update(updateQuery,
 				new Object[] { t.getUsername(), t.getPassword(), t.getFirstname(), t.getLastname(), t.getId() });
 		return nbRowAffected;
-	}
-
-	/**
-	 * mapping method, SQL -> Java
-	 * 
-	 * @param resultSet
-	 * @return
-	 */
-	private User toUser(ResultSet resultSet) {
-		User user = new User();
-		try {
-			user.setId((Integer) resultSet.getInt("user_id"));
-			user.setUsername(resultSet.getString("username"));
-			user.setPassword(resultSet.getString("password"));
-			user.setFirstname(resultSet.getString("firstname"));
-			user.setLastname(resultSet.getString("lastname"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
 	}
 
 }
