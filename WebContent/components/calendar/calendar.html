@@ -5,12 +5,12 @@
 <div class="accordion col-lg-6 offset-lg-3" id="groupAccordion">
 	<div class="card-header text-center" id="headingOne">
 		<h2 class="mb-0">
-			<button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="true" >
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
 				14 Juin 
 			</button>
 		</h2>
 	</div>
-	<div  class="collapse show" >
+	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
 		<div class="card-body">
 			<table class="largeTable">
 				<tr style="text-align:center">
@@ -32,12 +32,12 @@
 <!-- a supprimer ci dessous (pour exemple à l'affichage) si boucle tout sera bon  -->
 	<div class="card-header text-center" id="headingOne">
 		<h2 class="mb-0">
-			<button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="true" >
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
 				15 Juin 
 			</button>
 		</h2>
 	</div>
-	<div  class="collapse show" >
+	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
 		<div class="card-body">
 			<table class="largeTable">
 				<tr style="text-align:center">
@@ -71,3 +71,5 @@
 	
 	
 </div>
+
+
