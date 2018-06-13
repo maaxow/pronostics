@@ -3,7 +3,6 @@ package pronostics.rest;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,8 +17,10 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
+import pronostics.model.Role;
 import pronostics.model.User;
 import pronostics.repository.UserRepository;
+import pronostics.service.AuthService;
 
 @Component
 @Path("/user")
@@ -27,6 +28,8 @@ public class UserRestService {
 
 	@Inject
 	private UserRepository userRepository;
+	@Inject
+	private AuthService authService;
 
 	@GET
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
@@ -53,15 +56,17 @@ public class UserRestService {
 	
 	@PUT
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
-	public Response addUser(@PathParam("user") User user) {
+	public Response addUser(User user) {
+		System.out.println("new user :" + user.toString());
+		user.setRole(Role.USER);
+		user.setPassword(authService.encryptPwd(user.getPassword()));
 		int nbRows = userRepository.save(user);
 		return Response.ok(nbRows).build();
 	}
 	
 	@POST
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
-	@Consumes(value = {MediaType.APPLICATION_JSON_VALUE})
-	public Response updateUser(@PathParam("user") User user) {
+	public Response updateUser(User user) {
 		int nbRows = userRepository.update(user);
 		return Response.ok(nbRows).build();
 	}

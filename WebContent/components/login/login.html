@@ -1,3 +1,72 @@
-<h1>Login</h1>
-
-<p>{{message}}</p>
+<!-- <h1 class="broadway text-center">La casa del<br>pronóstico</h1> -->
+<div>
+	<img class="offset-lg-5" src="img/FIFA_World_Cup_2018_Logo.png" alt="" width="100" height="120">
+	<div class="col-lg-5 offset-lg-3 text-center">
+		<h1 class="title broadway">La Casa del Pronostico</h1>
+	</div>
+	<div class="row" ng-if="isLoggingForm">
+		<div class="col-lg-3 offset-lg-4">
+			<div class="card" >
+			    <h5 class="broadway h5 mb-3 card-header font-weight-normal">Connexion</h5>	
+			    <div class="row">	
+				    <div class="form-group col-lg-7 offset-lg-2">
+				    	<input class="form-control" type="text" placeholder="Identifiant" ng-model="login" required autofocus>
+				    </div>
+			    </div>
+			    <div class="row">
+				    <div class="form-group col-lg-7 offset-2">
+				    	<input class="form-control" type="password" placeholder="Mot de Passe" ng-model="password" required>
+				    </div>
+			    </div>
+			    <div class="row">
+				    <div class="col-lg-4 offset-lg-7">
+				   		<button class="btn btn-danger" ng-click="logging(login,password)">Connexion</button>
+				    </div>
+			    </div><br>
+			   <div class="row">
+			   		<div class="col-lg-12 offset-lg-2">
+					    <span class="little-text">Tu n'as pas encore de compte ?</span>
+				   		<button class="btn btn-danger" ng-click="switchTo('subscribe')">Inscription</button>
+			   		</div>
+			   </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-if="!isLoggingForm">
+		<div class="col-lg-3 offset-lg-4">
+			<div class="card" >
+			    <h5 class="broadway h5 mb-3 card-header font-weight-normal">Inscription</h5>	
+			    <div class="row">	
+				    <div class="form-group col-lg-7 offset-lg-2">
+				    	<input class="form-control" type="text" placeholder="Identifiant" ng-model="saveUser.username" required autofocus>
+				    </div>
+			    </div>
+			    <div class="row">
+				    <div class="form-group col-lg-7 offset-2">
+				    	<input class="form-control" type="password" placeholder="Mot de Passe" ng-model="saveUser.password" required>
+				    </div>
+			    </div>
+			    <div class="row">	
+				    <div class="form-group col-lg-7 offset-lg-2">
+				    	<input class="form-control" type="text" placeholder="Prenom" ng-model="saveUser.firstname" required autofocus>
+				    </div>
+			    </div>
+			    <div class="row">	
+				    <div class="form-group col-lg-7 offset-lg-2">
+				    	<input class="form-control" type="text" placeholder="Nom" ng-model="saveUser.lastname" required autofocus>
+				    </div>
+			    </div>
+			   <div class="row">
+			   		<div class="col-lg-12 offset-lg-2">
+				   		<button class="btn btn-danger" ng-click="save(saveUser)">Enregistrer</button>
+			   		</div>
+			   </div>
+			    <div class="row">
+				    <div class="col-lg-4 offset-lg-7">
+				   		<button class="btn btn-danger" ng-click="switchTo('connect')">Se connecter</button>
+				    </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

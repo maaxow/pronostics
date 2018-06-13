@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import pronostics.model.User;
 import pronostics.repository.sqlBuilder.UserSQLBuilder;
+import pronostics.service.AuthService;
 import pronostics.service.UserService;
 
 @Repository
@@ -18,6 +19,8 @@ public class UserRepository implements IRepository<User> {
 
 	@Inject
 	private DataSource dataSource;
+	@Inject
+	public AuthService authService;
 	@Inject
 	private UserService userService;
 	private JdbcTemplate jdbcTemplate;
@@ -68,7 +71,7 @@ public class UserRepository implements IRepository<User> {
 	@Override
 	public int save(User t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery,
-				new Object[] { t.getUsername(), t.getPassword(), t.getFirstname(), t.getLastname() });
+				new Object[] { t.getUsername(), authService.encryptPwd(t.getPassword()), t.getFirstname(), t.getLastname(), t.getRole().getName() });
 		return nbRowAffected;
 	}
 

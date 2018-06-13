@@ -1,5 +1,5 @@
 <div>
-	<div class="row align-items-end">
+	<div class="row align-items-end" ng-if="$login.isLogged()">
 		<div class="col-lg-1">
 			<img class="logo-header"alt="logo coupe du monde" src="img/FIFA_World_Cup_2018_Logo.png" >
 		</div>
@@ -7,27 +7,27 @@
 			<h1 class="title broadway" data-ui-sref="home">La Casa del Pronostico</h1>
 		</div>
 		
-		<div class="col-lg-7 row">
+		<div class="col-lg-7 row" ng-if="$login.isLogged()">
 			<div class="col-lg-5 offset-lg-5 text-lg-right">
-				<span style="font-size: 25px">John Doe </span>
+				<span style="font-size: 25px">nom{{user.firstname}} {{user.lastname}}</span>
 				<i class="material-icons">person</i>
 			</div>
-			<div class="col-lg-1 text-lg-right">
+			<div class="col-lg-1 text-lg-right" ng-click="logout()">
 				<i class="material-icons">power_settings_new</i>
 			</div>
 		</div>
 	</div>
 	<nav class="colorNav navbar navbar-expand-lg bg-light">
 		
-		<div id="navbarNav" class="toolbarNav row col-lg-6 offset-lg-3">
+		<div id="navbarNav" class="toolbarNav row col-lg-6 offset-lg-3" ng-class="{'col-lg-6 offset-lg-3': $login.isLogged(), 'col-lg-5 offset-lg-4': !$login.isLogged()}">
 			<ul class="navbar-nav">
-				<li class="nav-item">
+				<li class="nav-item" ng-if="$login.isLogged()">
 					<a class="nav-link toolbarItem" data-ui-sref="home.pronostic">Pronostiques</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link toolbarItem" data-ui-sref="home.calendar">Calendrier</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" ng-if="$login.isLogged()">
 					<a class="nav-link toolbarItem" data-ui-sref="home.classement">Classement</a>
 				</li>
 				<li class="nav-item">
@@ -37,6 +37,9 @@
 					<a class="nav-link toolbarItem" data-ui-sref="home.groupe">Groupes</a>
 				</li>
 			</ul>
+		</div>
+		<div class="col-lg-1 offset-lg-1" ng-if="!isLoginPage()">
+			<button class="btn btn-link" ng-if="!$login.isLogged()" ui-sref="home.login"">Connexion</button>
 		</div>
 	</nav>
 </div>
