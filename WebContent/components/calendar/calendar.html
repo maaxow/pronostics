@@ -1,3 +1,75 @@
 <h1>Page du calendar !</h1>
 
 <p>Test Angular : {{test}}</p>
+
+<div class="accordion col-lg-6 offset-lg-3" id="groupAccordion">
+	<div class="card-header text-center" id="headingOne">
+		<h2 class="mb-0">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+				14 Juin 
+			</button>
+		</h2>
+	</div>
+	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+		<div class="card-body">
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th>Groupe A</th>
+				</tr>
+			</table>
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th><img src="img/flags/Russie.png" ></th>
+					<th>17h00</th>
+					<th><img src="img/flags/ArabieSaoudite.png" ></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
+	
+<!-- a supprimer ci dessous (pour exemple à l'affichage) si boucle tout sera bon  -->
+	<div class="card-header text-center" id="headingOne">
+		<h2 class="mb-0">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+				15 Juin 
+			</button>
+		</h2>
+	</div>
+	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+		<div class="card-body">
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th>Groupe B</th>
+				</tr>
+			</table>
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th><img src="img/flags/Espagne.png" ></th>
+					<th>17h00</th>
+					<th><img src="img/flags/Portugal.png" ></th>
+				</tr>
+			</table>
+		</div>
+		<div class="card-body">
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th>Groupe B</th>
+				</tr>
+			</table>
+			<table class="largeTable">
+				<tr style="text-align:center">
+					<th><img src="img/flags/Maroc.png" ></th>
+					<th>17h00</th>
+					<th><img src="img/flags/Iran.png" ></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+<!--  fin des trucs a supprimer (en cas de boucle) -->
+	
+	
+</div>
+
+

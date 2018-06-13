@@ -11,17 +11,37 @@
 			<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
 				<div class="card-body">
 					<table class="largeTable">
-						<tr>
-							<th>Nom</th>
-							<th>Match joues</th>
-							<th>Match gagnes</th>
-							<th>Match nul</th>
-							<th>Match perdu</th>
-							<th>But marque</th>
-							<th>But pris</th>
-							<th>Point</th>
+						<tr style="text-align:center">
+							<th></th>
+							<th>J</th>
+							<th>G</th>
+							<th>N</th>
+							<th>P</th>
+							<th>+</th>
+							<th>-</th>
+							<th>Pts</th>
 						</tr>
-						<tr ng-repeat="team in list">
+						<tr style="text-align:center">
+							<th><img src="img/flags/Australie.png" ></th>
+							<th>2</th>
+							<th>1</th>
+							<th>1</th>
+							<th>0</th>
+							<th>3</th>
+							<th>1</th>
+							<th>4</th>
+						</tr >
+						<tr style="text-align:center">
+							<th><img src="img/flags/France.png" ></th>
+							<th>2</th>
+							<th>1</th>
+							<th>1</th>
+							<th>0</th>
+							<th>3</th>
+							<th>1</th>
+							<th>4</th>
+						</tr >
+						<tr style="text-align:center" ng-repeat="team in list">
 							<td>{{team.name}}</td>
 							<td>{{team.nbGame}}</td>
 							<td>{{team.nbWin}}</td>
