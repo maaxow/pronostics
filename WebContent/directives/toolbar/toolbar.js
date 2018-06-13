@@ -1,12 +1,19 @@
 
-angular.module('pronostic.directives.toolbar', [])
-	.directive("pronosticToolbar",[function(){
+angular.module('pronostic.directives.toolbar', ['pronostic.services.login'])
+	.directive("pronosticToolbar",['$timeout', function($timeout){
 			return {
 				templateUrl : 'directives/toolbar/toolbar.html',
-				controller : toolbarController
+				controller : ['$scope', '$login', '$state',
+					function($scope, $login, $state){
+						$scope.$login = $login;
+						
+						$scope.logout = function(){
+							$login.logout();
+						};
+						
+						$scope.isLoginPage = function(){
+							return $state.is('home.login');
+						}
+					}]
 			}
 }]);
-
-function toolbarController($scope){
-	$scope.message = "Test directive toolbar";
-}
