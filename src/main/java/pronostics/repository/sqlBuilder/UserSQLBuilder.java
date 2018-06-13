@@ -15,5 +15,6 @@ public class UserSQLBuilder extends AbstractSQLBuilder<Game> {
 		this.columns.add("password");
 		this.columns.add("firstname");
 		this.columns.add("lastname");
+		this.columns.add("user_role");
 	}
 }

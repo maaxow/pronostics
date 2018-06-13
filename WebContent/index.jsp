@@ -7,6 +7,7 @@
 	<script src="lib/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 	<script src="lib/bootstrap-4.1.1/js/bootstrap.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular.min.js"></script>
+	<script src="lib/angular-cookies/angular-cookies.min.js"></script>
 	<script src="lib/angularjs-1.6.10/angular-ui-router.js"></script>
 	<link rel="stylesheet" href="lib/bootstrap-4.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/material-icons/material-icons.css">
@@ -17,6 +18,7 @@
 	<script src="components/rest/game.rest.service.js"></script>
 	<script src="components/rest/team.rest.service.js"></script>
 	<script src="components/rest/rest.service.js"></script>
+	<script src="components/login/login.service.js"></script>
 <!-- 	DIRECTIVES -->
 	<script src="directives/toolbar/toolbar.js"></script>
 <!-- 	COMPONENTS -->
