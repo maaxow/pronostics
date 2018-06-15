@@ -28,6 +28,7 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	private static final String saveQuery = pronosticBuilder.buildSaveQuery();
 	private static final String updateQuery = pronosticBuilder.buildUpdateQuery();
 	private static final String deleteQuery = pronosticBuilder.buildDeleteQuery();
+	private static final String findByUserIdQuery = "SELECT * FROM Pronostic WHERE user_id = ?;";
 	
 	@PostConstruct
 	private void postConstruct() {
@@ -56,6 +57,14 @@ public class PronosticRepository implements IRepository<Pronostic> {
 		return pronostics;
 	}
 
+	public List<Pronostic> findByUserId(long id) {
+		List<Pronostic> pronostics = jdbcTemplate.query(findByUserIdQuery, new Object[] { id }, (resultSet, i) -> {
+			return pronosticService.toPronostic(resultSet);
+		});
+		
+		return pronostics;
+	}
+	
 	@Override
 	public int save(Pronostic t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery,

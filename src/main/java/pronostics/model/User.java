@@ -11,7 +11,6 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Role role;
-	private boolean admin = false;
 
 	/**
 	 * @return the id
@@ -86,14 +85,6 @@ public class User {
 	 */
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public boolean isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
 	}
 
 	public Role getRole() {

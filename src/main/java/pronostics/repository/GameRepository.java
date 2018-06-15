@@ -28,6 +28,8 @@ public class GameRepository implements IRepository<Game> {
 	private static final String saveQuery = gameBuilder.buildSaveQuery();
 	private static final String updateQuery = gameBuilder.buildUpdateQuery();
 	private static final String deleteQuery = gameBuilder.buildDeleteQuery();
+	private static final String findByExceptListIdQuery = "SELECT * FROM Game WHERE game_id NOT IN (?";
+	
 
 	@PostConstruct
 	private void postConstruct() {
@@ -49,6 +51,34 @@ public class GameRepository implements IRepository<Game> {
 	@Override
 	public List<Game> findAll() {
 		List<Game> games = jdbcTemplate.query(findAllQuery, (resultSet, i) -> {
+			return gameService.toGame(resultSet);
+		});
+		return games;
+	}
+	public List<Game> findByExceptListId(List<Long> ids) {
+		String query = findByExceptListIdQuery;
+		
+		if(ids != null) {
+			if(ids.size() > 0) {
+				for(int i = 0; i < ids.size(); i++) {
+					if(i == 0) {
+						if(ids.size() > 1) {
+							query = query.replace("?", "?,");
+						}
+					} else {
+						if(i != (ids.size()-1)){	
+							query = query.concat("?,");
+						} else {
+							query = query.concat("?");
+						}
+					}
+				}
+			}
+		} else {
+			return findAll();
+		}
+		query = query.concat(");");
+		List<Game> games = jdbcTemplate.query(query, ids.toArray(), (resultSet, i) -> {
 			return gameService.toGame(resultSet);
 		});
 		return games;

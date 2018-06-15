@@ -7,9 +7,9 @@
 			<h1 class="title broadway" data-ui-sref="home">La Casa del Pronostico</h1>
 		</div>
 		
-		<div class="col-lg-7 row" ng-if="$login.isLogged()">
+		<div class="col-lg-7 row" ng-if="isLogged()">
 			<div class="col-lg-5 offset-lg-5 text-lg-right">
-				<span style="font-size: 25px">nom{{user.firstname}} {{user.lastname}}</span>
+				<span style="font-size: 25px">{{user.firstname}} {{user.lastname}}</span>
 				<i class="material-icons">person</i>
 			</div>
 			<div class="col-lg-1 text-lg-right" ng-click="logout()">

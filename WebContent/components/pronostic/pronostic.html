@@ -1,34 +1,40 @@
-<h1>Page des pronostiques !</h1>
+<h1 class="col-lg-6 offset-4">Page des pronostiques</h1>
 
-<p> Test Angular  : {{test}} </p>
-
-
-<div class="accordion col-lg-6 offset-lg-3" id="groupAccordion">
+<div class="accordion col-lg-6 offset-lg-3" id="pronoToDoAccordion">
 	<div class="card-header text-center" id="headingOne">
 		<h2 class="mb-0">
-			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#pronoToDo" aria-expanded="true" aria-controls="#pronoToDo">
 				Pronostic à faire
 			</button>
 		</h2>
 	</div>
-	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+	<div id="pronoToDo" class="collapse show" aria-labelledby="PronoToDo" data-parent="#pronoToDoAccordion">
 		<div class="card-body">
-			<table class="largeTable">
+		
+			<table class="largeTable" ng-repeat="prono in pronoToDo | orderBy: 'date'" ng-if="!isAfterNow(prono.date)">
 				<tr style="text-align:center">
-					<th><img src="img/flags/France.png" ></th>
-					<th><FORM><SELECT name="game_team_1" size="1">
-					<OPTION>0<OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>
-					</SELECT></FORM></th>
-					<th>16/06 20h</th>
-					<th><FORM><SELECT name="game_team_2" size="1">
-					<OPTION>0<OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>
-					</SELECT></FORM></th>
-					<th><img src="img/flags/Australie.png" ></th>
+					<td>
+						<img src="img/flags/{{prono.team1.name}}.png" >
+					</td>
+					<td>
+						<FORM>
+							<SELECT name="game_team_1" size="1" ng-model="prono.goalTeam1">
+								<option ng-repeat="nb in but">{{nb}}</option>
+							</SELECT>
+						</FORM>
+					</td>
+					<td><strong>{{prono.date | date: format: 'dd/MM/yyyy HH:mm:SS'}}</strong></td>
+					<td>
+						<FORM>
+							<SELECT name="game_team_2" size="1" ng-model="prono.goalTeam2">
+								<option ng-repeat="nb in but">{{nb}}</option>
+							</SELECT>
+						</FORM>
+					</td>
+					<td><img src="img/flags/{{prono.team2.name}}.png" ></td>
 				</tr>
-			</table>
-			<table class="largeTable">
 				<tr style="text-align:center">
-					<th><input type="submit" name="Submit" value="Validacion"></th>
+					<td colspan="5"><button name="Submit" ng-click="validateProno(prono)">Validacion</button></td>
 				</tr>
 			</table>
 		</div>
@@ -36,20 +42,18 @@
 	
 	<div class="card-header text-center" id="headingOne">
 		<h2 class="mb-0">
-			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="{{'#group' + group }}" aria-expanded="true" aria-controls="{{'#group' + group }}">
+			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#pronoDone" aria-expanded="true" aria-controls="#pronoDone">
 				Pronostic fait
 			</button>
 		</h2>
 	</div>
-	<div id="{{'group' + group }}" class="collapse show" aria-labelledby="{{'group' + group }}" data-parent="#groupAccordion">
+	<div id="pronoDone" class="collapse show" aria-labelledby="pronoDone" data-parent="#pronoDoneAccordion">
 		<div class="card-body">
-			<table class="largeTable">
-				<tr style="text-align:center">
-					<th><img src="img/flags/Russie.png" ></th>
-					<th>3</th>
-					<th>Prono Validé</th>
-					<th>1</th>
-					<th><img src="img/flags/ArabieSaoudite.png" ></th>
+			<table class="col-lg-6 offset-lg-3" ng-repeat="prono in pronoDone">
+				<tr>
+					<td><img src="img/flags/{{prono.game.team1.name}}.png" ></td>
+					<td><strong>{{prono.goalTeam1}} - {{prono.goalTeam2}}</strong></td>
+					<td><img src="img/flags/{{prono.game.team2.name}}.png" ></td>
 				</tr>
 			</table>
 		</div>
