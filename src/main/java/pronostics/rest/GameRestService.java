@@ -1,9 +1,15 @@
 package pronostics.rest;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -41,6 +47,53 @@ public class GameRestService {
 		if (gameRepository != null) {
 			Game game = gameRepository.findById(Long.parseLong(id));
 			return Response.ok(game).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	@POST
+	@Path("/except")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response findByExceptListId(List<Long> ids) {
+		if (gameRepository != null) {
+			List<Game> game = gameRepository.findByExceptListId(ids);
+			if(game != null) {
+				return Response.ok(game).build();
+			}
+		}
+		return Response.status(Status.NOT_FOUND).build();
+	}
+	@SuppressWarnings("deprecation")
+	@GET
+	@Path("/filter/date")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response findFilterByDate() {
+		if (gameRepository != null) {
+			List<Game> games = gameRepository.findAll();
+			Map<Long, List<Game>> result = new TreeMap<Long, List<Game>>(
+				new Comparator<Long>() {
+						@Override
+						public int compare(Long l1, Long l2) {
+							return l1.compareTo(l2);
+						}
+			});
+			ArrayList<Game> newList = null;
+			Date dateWithoutHours = null;
+			for(Game game : games) {
+				dateWithoutHours = new Date(game.getDate().getTime());
+				dateWithoutHours.setHours(0);
+				dateWithoutHours.setMinutes(0);
+				dateWithoutHours.setSeconds(0);
+				if(!result.containsKey(dateWithoutHours.getTime())) {
+					newList = new ArrayList<Game>();
+					newList.add(game);
+					result.put(dateWithoutHours.getTime(), newList);
+				} else {
+					result.get(dateWithoutHours.getTime()).add(game);
+				}
+			}
+			
+			return Response.ok(result).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

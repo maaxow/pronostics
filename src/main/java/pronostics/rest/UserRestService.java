@@ -59,7 +59,6 @@ public class UserRestService {
 	public Response addUser(User user) {
 		System.out.println("new user :" + user.toString());
 		user.setRole(Role.USER);
-		user.setPassword(authService.encryptPwd(user.getPassword()));
 		int nbRows = userRepository.save(user);
 		return Response.ok(nbRows).build();
 	}

@@ -26,6 +26,7 @@ angular.module('pronostic.controllers.login', [])
 		
 		$scope.save = function(){
 			$login.saveUser($scope.saveUser);
+			$scope.switchTo('connect');
 		}
 		$scope.switchTo = function(mode){
 			if(mode === 'subscribe') {

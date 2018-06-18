@@ -11,7 +11,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Role role;
-	private boolean admin = false;
+	private int point;
 
 	/**
 	 * @return the id
@@ -88,14 +88,6 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public boolean isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-
 	public Role getRole() {
 		return this.role;
 	}
@@ -107,6 +99,20 @@ public class User {
 	@Override
 	public String toString() {
 		return getUsername() + " " + getFirstname() + " " + getLastname();
+	}
+
+	/**
+	 * @return the point
+	 */
+	public int getPoint() {
+		return point;
+	}
+
+	/**
+	 * @param point the point to set
+	 */
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	
 
