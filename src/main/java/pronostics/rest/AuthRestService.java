@@ -1,22 +1,20 @@
 package pronostics.rest;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import pronostics.model.User;
-import pronostics.repository.UserRepository;
 import pronostics.service.AuthService;
 
 @Component
@@ -25,19 +23,6 @@ public class AuthRestService {
 	
 	@Inject
 	public AuthService authService;
-
-//	@GET
-//	@Path("/{id}")
-//	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
-//	public Response findById(@PathParam("id") Long id) {
-//		if (userRepository != null) {
-//			User user = userRepository.findById(id);
-//			return Response.ok(user).build();
-//		} else {
-//			return Response.status(Status.NOT_FOUND).build();
-//		}
-//	}
-	
 	
 	@POST
 	@Path("authenticate")

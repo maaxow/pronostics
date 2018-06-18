@@ -14,7 +14,7 @@
 			<table class="largeTable" ng-repeat="prono in pronoToDo | orderBy: 'date'" ng-if="!isAfterNow(prono.date)">
 				<tr style="text-align:center">
 					<td>
-						<img src="img/flags/{{prono.team1.name}}.png" >
+						<img src="img/flags/{{prono.team1.name}}.png" title="{{prono.team1.name}}">
 					</td>
 					<td>
 						<FORM>
@@ -31,7 +31,7 @@
 							</SELECT>
 						</FORM>
 					</td>
-					<td><img src="img/flags/{{prono.team2.name}}.png" ></td>
+					<td><img src="img/flags/{{prono.team2.name}}.png" title="{{prono.team2.name}}"></td>
 				</tr>
 				<tr style="text-align:center">
 					<td colspan="5"><button name="Submit" ng-click="validateProno(prono)">Validacion</button></td>
@@ -51,9 +51,9 @@
 		<div class="card-body">
 			<table class="col-lg-6 offset-lg-3" ng-repeat="prono in pronoDone">
 				<tr>
-					<td><img src="img/flags/{{prono.game.team1.name}}.png" ></td>
+					<td><img src="img/flags/{{prono.game.team1.name}}.png" title="{{prono.team1.name}}"></td>
 					<td><strong>{{prono.goalTeam1}} - {{prono.goalTeam2}}</strong></td>
-					<td><img src="img/flags/{{prono.game.team2.name}}.png" ></td>
+					<td><img src="img/flags/{{prono.game.team2.name}}.png" title="{{prono.team2.name}}"></td>
 				</tr>
 			</table>
 		</div>

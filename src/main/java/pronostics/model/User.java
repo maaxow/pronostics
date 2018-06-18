@@ -11,6 +11,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Role role;
+	private int point;
 
 	/**
 	 * @return the id
@@ -98,6 +99,20 @@ public class User {
 	@Override
 	public String toString() {
 		return getUsername() + " " + getFirstname() + " " + getLastname();
+	}
+
+	/**
+	 * @return the point
+	 */
+	public int getPoint() {
+		return point;
+	}
+
+	/**
+	 * @param point the point to set
+	 */
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	
 

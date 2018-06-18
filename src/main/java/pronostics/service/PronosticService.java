@@ -26,6 +26,11 @@ public class PronosticService {
 		System.out.println("Des trucs");
 	}
 	
+	public int calculatePoint(Pronostic prono) {
+		
+		return 0;
+	}
+	
 	/**
 	 * mapping method, SQL -> Java
 	 * 
@@ -42,6 +47,7 @@ public class PronosticService {
 			prono.setUser(user);
 			prono.setGoalTeam1((Integer) resultSet.getInt("goal_team_1"));
 			prono.setGoalTeam2((Integer) resultSet.getInt("goal_team_2"));
+			prono.setResultat(resultSet.getInt("resultat"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

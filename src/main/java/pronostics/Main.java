@@ -4,7 +4,6 @@ public class Main {
 
 	private String message;
 	
-	
 	public Main(){
 		this.setMessage("Just a test");
 	}

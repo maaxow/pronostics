@@ -70,7 +70,6 @@ angular.module('pronostic.services.login', ['ngCookies'])
 			});
 		},
 		getUserLogged: function(){
-//			return new User(5,"maaxow", "Maxime", "Rose", 150, true);
 			if(_isLogged){
 				return _user;
 			} else {

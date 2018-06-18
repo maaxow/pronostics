@@ -12,7 +12,10 @@
 				<span style="font-size: 25px">{{user.firstname}} {{user.lastname}}</span>
 				<i class="material-icons">person</i>
 			</div>
-			<div class="col-lg-1 text-lg-right" ng-click="logout()">
+			<div>
+				<span>{{user.point}} pts</span>
+			</div>
+			<div class="col-lg-1 text-lg-right pointer" ng-click="logout()">
 				<i class="material-icons">power_settings_new</i>
 			</div>
 		</div>
@@ -27,19 +30,19 @@
 				<li class="nav-item">
 					<a class="nav-link toolbarItem" data-ui-sref="home.calendar">Calendrier</a>
 				</li>
-				<li class="nav-item" ng-if="$login.isLogged()">
+				<li class="nav-item">
 					<a class="nav-link toolbarItem" data-ui-sref="home.classement">Classement</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link toolbarItem" data-ui-sref="home.finale">Tableau final</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link toolbarItem" data-ui-sref="home.groupe">Groupes</a>
-				</li>
+<!-- 				<li class="nav-item"> -->
+<!-- 					<a class="nav-link toolbarItem" data-ui-sref="home.finale">Tableau final</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="nav-item"> -->
+<!-- 					<a class="nav-link toolbarItem" data-ui-sref="home.groupe">Groupes</a> -->
+<!-- 				</li> -->
 			</ul>
 		</div>
 		<div class="col-lg-1 offset-lg-1" ng-if="!isLoginPage()">
-			<button class="btn btn-link" ng-if="!$login.isLogged()" ui-sref="home.login"">Connexion</button>
+			<button class="btn btn-outline-dark" ng-if="!$login.isLogged()" ui-sref="home.login"">Connexion</button>
 		</div>
 	</nav>
 </div>

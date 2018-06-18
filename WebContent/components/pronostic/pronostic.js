@@ -1,32 +1,29 @@
 angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
-.controller('PronosticController', ['$scope', '$login', '$http', function($scope, $login, $http){
+.controller('PronosticController', ['$scope', '$login', '$game', '$http', '$state', function($scope, $login, $game, $http, $state){
 
 	$scope.userId = null;
 	$scope.pronoToDo = [];
 	$scope.pronoDone = [];
 	$scope.but = [0,1,2,3,4,5,6,7,8,9,10]
 	
-	$login.authenticate("maaxow","maaxow").then(function(userLogged){
-		var user = userLogged;
-		$scope.user = user;
-		$scope.userId = user.id;
-		$scope.updatePronoDone();
-		$scope.updatePronoToDo();
-	});
-	
+//	$login.authenticate("maaxow","maaxow").then(function(userLogged){
+//		var user = userLogged;
+//		$scope.user = user;
+//		$scope.userId = user.id;
+//		$scope.updatePronoDone();
+//		$scope.updatePronoToDo();
+//	});
 	
 	$scope.updatePronoToDo = function(){
 		if($scope.userId){
 			$scope.updatePronoDone().then(function(){
-				console.log("updatePronoDone done", $scope.pronoDone);
 				var pronoDoneIdList = $scope.pronoDone.map(function(item){
-					return item.id;
+					return item.game.id;
 				});
-				console.log("updatePronoDone done", pronoDoneIdList);
+				console.log("prono", $scope.pronoDone);
 				pronoDoneIdList = pronoDoneIdList.length === 0 ? null : pronoDoneIdList;
 				// list a recup avec les prono deja fait par le mec
-				$http.post('rest/game/except', pronoDoneIdList).then(function(response){
-					console.log("response list game to prono", response.data);
+				$game.getGameExceptList(pronoDoneIdList).then(function(response){
 					$scope.pronoToDo = response.data;
 				});
 			});
@@ -61,11 +58,22 @@ angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
 				goalTeam1: goalTeam1,
 				goalTeam2: goalTeam2
 		}
-		console.log("saving prono :", prono);
 		$http.post('rest/pronostic/new', prono).then(function(response){
-			console.log("saves prono :", response);
 			$scope.updatePronoToDo();
 		})
+	};
+	if($login.isLogged()){
+		$scope.user = $login.getUserLogged();
+		if($scope.user != null){
+			$scope.userId = $scope.user.id;
+			$scope.updatePronoDone();
+			$scope.updatePronoToDo();
+		}
+		else {
+			$state.go('home.login');
+		}
+	} else {
+		$state.go('home.login');
 	}
 }]);
 	

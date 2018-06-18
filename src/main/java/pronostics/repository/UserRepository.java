@@ -71,7 +71,7 @@ public class UserRepository implements IRepository<User> {
 	@Override
 	public int save(User t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery,
-				new Object[] { t.getUsername(), authService.encryptPwd(t.getPassword()), t.getFirstname(), t.getLastname(), t.getRole().getName() });
+				new Object[] { t.getUsername(), authService.encryptPwd(t.getPassword()), t.getFirstname(), t.getLastname(), t.getRole().getName(), t.getPoint() });
 		return nbRowAffected;
 	}
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
- 	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,9 +13,19 @@
 	    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="pronostics" />
-	
+	<context:component-scan
+		base-package="pronostics" />
+
+<!-- 	<bean id="strongEncryptor" -->
+<!-- 		class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor"> -->
+<!-- 		<property name="algorithm"> -->
+<!-- 			<value>PBEWithMD5AndTripleDES</value> -->
+<!-- 		</property> -->
+<!-- 		<property name="password"> -->
+<!-- 			<value>private</value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
 	<import resource="classpath:spring/spring-datasource.xml" />
-<!-- 	<import resource="classpath:spring/spring-security.xml" /> -->
 
 </beans>

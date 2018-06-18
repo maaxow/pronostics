@@ -28,6 +28,7 @@ public class UserService {
 			user.setLastname(resultSet.getString("lastname"));
 			Role role = Role.valueOf(resultSet.getString("user_role"));
 			user.setRole(role);
+			user.setPoint(resultSet.getInt("user_point"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

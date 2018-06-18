@@ -1,7 +1,10 @@
 angular.module('pronostic.controllers.home', ['pronostic.rest.service'])
-.controller("HomeController", ['$scope',
-	function($scope){
+.controller("HomeController", ['$scope', '$http', 
+	function($scope, $http){
 	
+//	$http.get('rest/update/score/2/0-1').then(function(response){
+//		console.log("response : ", response);
+//	})
 //	$login.isLogged();
 }]);
 

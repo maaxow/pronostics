@@ -10,6 +10,7 @@ public class Pronostic {
 	private User user;
 	private int goalTeam1;
 	private int goalTeam2;
+	private int resultat;
 
 	/**
 	 * @return the id
@@ -84,5 +85,19 @@ public class Pronostic {
 	 */
 	public void setGoalTeam2(int goalTeam2) {
 		this.goalTeam2 = goalTeam2;
+	}
+
+	/**
+	 * @return the resultat
+	 */
+	public int getResultat() {
+		return resultat;
+	}
+
+	/**
+	 * @param resultat the resultat to set
+	 */
+	public void setResultat(int resultat) {
+		this.resultat = resultat;
 	}
 }
