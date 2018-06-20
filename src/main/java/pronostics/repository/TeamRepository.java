@@ -27,7 +27,7 @@ public class TeamRepository implements IRepository<Team> {
 	private static final String saveQuery = teamBuilder.buildSaveQuery();
 	private static final String updateQuery = teamBuilder.buildUpdateQuery();
 	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
-	private static final String findByGroupeQuery = "SELECT * FROM Team WHERE groupe = ?";
+	private static final String findByGroupeQuery = "SELECT * FROM team WHERE groupe = ?";
 
 	@PostConstruct
 	private void postConstruct() {

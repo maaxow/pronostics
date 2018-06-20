@@ -28,7 +28,7 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	private static final String saveQuery = pronosticBuilder.buildSaveQuery();
 	private static final String updateQuery = pronosticBuilder.buildUpdateQuery();
 	private static final String deleteQuery = pronosticBuilder.buildDeleteQuery();
-	private static final String findByUserIdQuery = "SELECT * FROM Pronostic WHERE user_id = ?;";
+	private static final String findByUserIdQuery = "SELECT * FROM pronostic WHERE user_id = ?;";
 	
 	@PostConstruct
 	private void postConstruct() {
