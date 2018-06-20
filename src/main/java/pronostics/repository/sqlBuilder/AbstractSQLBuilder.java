@@ -19,11 +19,10 @@ public abstract class AbstractSQLBuilder<T> {
 	 * @return String
 	 */
 	public String buildFindByIdQuery() {
-		String query = "SELECT * FROM ";
-		query += tableName + " ";
+		String query = "SELECT * FROM `";
+		query += tableName + "` ";
 		query += "WHERE " + columnPKName + " ";
 		query += "= ?;";
-//		System.out.println("buildFindByIdQuery() : \n" + query);
 		return query;
 	}
 	
@@ -32,9 +31,8 @@ public abstract class AbstractSQLBuilder<T> {
 	 * @return String
 	 */
 	public String buildFindAllQuery() {
-		String query = "SELECT * FROM ";
-		query += tableName + ";";
-//		System.out.println("buildFindAllQuery() : \n" + query);
+		String query = "SELECT * FROM `";
+		query += tableName + "`;";
 		return query;
 	}
 	
@@ -44,8 +42,8 @@ public abstract class AbstractSQLBuilder<T> {
 	 * @return String
 	 */
 	public String buildSaveQuery() {
-		String query = "INSERT INTO "
-				+ tableName + "(";
+		String query = "INSERT INTO `"
+				+ tableName + "`(";
 		for(int i = 1; i < columns.size(); i++) { // start at 1 to skip the id (AUTO_INCREMENT)
 			query += columns.get(i);
 			if(i != columns.size()-1) {
@@ -60,7 +58,6 @@ public abstract class AbstractSQLBuilder<T> {
 			}
 		}
 		query += ");";
-//		System.out.println("buildSaveQuery() : \n" + query);
 		return query;
 	}
 	
@@ -70,8 +67,8 @@ public abstract class AbstractSQLBuilder<T> {
 	 * @return String
 	 */
 	public String buildUpdateQuery() {
-		String query = "UPDATE "
-				+ tableName + " SET ";
+		String query = "UPDATE `"
+				+ tableName + "` SET ";
 		for(int i = 1; i < columns.size(); i++) { // start at 1 to skip the id (AUTO_INCREMENT)
 			query += columns.get(i) + "=?";
 			if(i != columns.size()-1) {
@@ -80,7 +77,6 @@ public abstract class AbstractSQLBuilder<T> {
 		}
 		query += " WHERE ";
 		query += columnPKName + "=?";
-//		System.out.println("buildUpdateQuery() : \n" + query);
 		return query;
 	}
 	
@@ -89,9 +85,9 @@ public abstract class AbstractSQLBuilder<T> {
 	 * @return
 	 */
 	public String buildDeleteQuery() {
-		String query = "DELETE FROM "
+		String query = "DELETE FROM `"
 				+ tableName 
-				+ " WHERE "
+				+ "` WHERE "
 				+ columnPKName + "=?;";
 //		System.out.println("buildDeleteQuery() : \n" + query);
 		return query;

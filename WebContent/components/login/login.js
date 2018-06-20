@@ -20,7 +20,12 @@ angular.module('pronostic.controllers.login', [])
 		$scope.logging = function(login, password){
 			$login.authenticate(login, password).then(function(userLogged){
 				$scope.user = userLogged;
+				$scope.errorLogging = false;
 				$state.go('home.calendar');
+			}, function(error){
+				console.log("error !!!!", error);
+				$scope.errorLogging = true;
+				$scope.message = error;
 			});
 		};
 		

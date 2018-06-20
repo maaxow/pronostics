@@ -18,13 +18,16 @@
 				    	<input class="form-control" type="password" placeholder="Mot de Passe" ng-model="password" required>
 				    </div>
 			    </div>
+			    <div class="alert alert-danger col-lg-8 offset-lg-2" role="alert" ng-if="errorLogging">
+			    	Erreur de connexion : {{message}}
+			    </div>
 			    <div class="row">
 				    <div class="col-lg-4 offset-lg-7">
 				   		<button class="btn btn-danger" ng-click="logging(login,password)">Connexion</button>
 				    </div>
 			    </div><br>
 			   <div class="row">
-			   		<div class="col-lg-12 offset-lg-2">
+			   		<div class="col-lg-10 offset-lg-3">
 					    <span class="little-text">Tu n'as pas encore de compte ?</span>
 				   		<button class="btn btn-danger" ng-click="switchTo('subscribe')">Inscription</button>
 			   		</div>
@@ -57,10 +60,11 @@
 				    </div>
 			    </div>
 			   <div class="row">
-			   		<div class="col-lg-12 offset-lg-2">
+			   		<div class="col-lg-4 offset-lg-7">
 				   		<button class="btn btn-danger" ng-click="save(saveUser)">Enregistrer</button>
 			   		</div>
 			   </div>
+			   <br>
 			    <div class="row">
 				    <div class="col-lg-4 offset-lg-7">
 				   		<button class="btn btn-danger" ng-click="switchTo('connect')">Se connecter</button>

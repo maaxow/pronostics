@@ -30,7 +30,7 @@ public class UserRepository implements IRepository<User> {
 	private static final String saveQuery = userBuilder.buildSaveQuery();
 	private static final String updateQuery = userBuilder.buildUpdateQuery();
 	private static final String deleteQuery = userBuilder.buildDeleteQuery();
-	private static final String findByUsernameQuery = "SELECT * FROM Users WHERE username = ?;";
+	private static final String findByUsernameQuery = "SELECT * FROM `Users` WHERE username = ?;";
 
 	@PostConstruct
 	private void postConstruct() {

@@ -28,7 +28,7 @@ public class GameRepository implements IRepository<Game> {
 	private static final String saveQuery = gameBuilder.buildSaveQuery();
 	private static final String updateQuery = gameBuilder.buildUpdateQuery();
 	private static final String deleteQuery = gameBuilder.buildDeleteQuery();
-	private static final String findByExceptListIdQuery = "SELECT * FROM Game WHERE game_id NOT IN (?";
+	private static final String findByExceptListIdQuery = "SELECT * FROM `Game` WHERE game_id NOT IN (?";
 	
 
 	@PostConstruct

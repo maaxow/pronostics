@@ -10,6 +10,7 @@ angular.module('pronostic.directives.toolbar', ['pronostic.services.login'])
 						$scope.user = {};
 						$scope.logout = function(){
 							$login.logout();
+							$state.go('home.login');
 						};
 						
 						$scope.isLoginPage = function(){
