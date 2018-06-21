@@ -125,7 +125,13 @@
           <warSourceDirectory>WebContent</warSourceDirectory>
         </configuration>
       </plugin>
-    </plugins>
+    <plugin>
+			  <artifactId>maven-release-plugin</artifactId>
+			  <configuration>
+			    <arguments>-Dsource.skip=true -Dmaven.javadoc.skip=true -DskipTests</arguments>
+			  </configuration>
+			</plugin>
+	</plugins>
   </build>
   <scm>
   	<url>https://github.com/maaxow/pronostics.git</url>

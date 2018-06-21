@@ -16,6 +16,9 @@ angular.module('pronostic.rest.service.team', [])
 		},
 		update : function(team){
 			return $http.post(restUrl + '/team', {team: team});
+		},
+		updatePoints : function(){
+			return $http.get(restUrl + '/team/update/score');
 		}
 	};
 }]);

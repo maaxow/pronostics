@@ -39,6 +39,11 @@ angular.module('pronostic',['ui.router', 'pronostic.rest.service',
 			url: "/login",
 			templateUrl: 'components/login/login.html',
 			controller: 'LoginController'
+	})
+	.state('home.admin', {
+		url: "/admin",
+		templateUrl: 'components/admin/admin.html',
+		controller: 'AdminController'
 	});
 	
 

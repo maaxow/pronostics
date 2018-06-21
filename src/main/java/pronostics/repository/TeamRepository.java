@@ -27,7 +27,7 @@ public class TeamRepository implements IRepository<Team> {
 	private static final String saveQuery = teamBuilder.buildSaveQuery();
 	private static final String updateQuery = teamBuilder.buildUpdateQuery();
 	private static final String deleteQuery = teamBuilder.buildDeleteQuery();
-	private static final String findByGroupeQuery = "SELECT * FROM Team WHERE groupe = ?";
+	private static final String findByGroupeQuery = "SELECT * FROM team WHERE groupe = ?";
 
 	@PostConstruct
 	private void postConstruct() {
@@ -61,7 +61,7 @@ public class TeamRepository implements IRepository<Team> {
 	public int save(Team t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery, new Object[] {
 				t.getName(),
-				t.getGroup(),
+				t.getGroup().name(),
 				t.getNbGame(),
 				t.getNbWin(),
 				t.getNbDraw(),
@@ -82,9 +82,10 @@ public class TeamRepository implements IRepository<Team> {
 
 	@Override
 	public int update(Team t) {
+		System.out.println("team : " + t);
 		int nbRowAffected = jdbcTemplate.update(updateQuery, new Object[] {
 				t.getName(),
-				t.getGroup(),
+				t.getGroup().name(),
 				t.getNbGame(),
 				t.getNbWin(),
 				t.getNbDraw(),

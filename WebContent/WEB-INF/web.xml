@@ -53,6 +53,10 @@
 		<servlet-name>StaticServlet</servlet-name>
 		<url-pattern>/login/*</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StaticServlet</servlet-name>
+		<url-pattern>/admin/*</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>jersey-servlet</servlet-name>

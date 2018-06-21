@@ -135,6 +135,20 @@ public class Game {
 	public void setGoalTeam2(int goalTeam2) {
 		this.goalTeam2 = goalTeam2;
 	}
+	
+	/**
+	 * Return if the team_id is the team_id_1 or team_id_2
+	 * @return 1 or 2
+	 */
+	public int getPositionNumber(int teamId) {
+		if(teamId == getTeam1().getId()) {
+			return 1;
+		} 
+		else if(teamId == getTeam2().getId()) {
+			return 2;
+		}
+		else return 0;
+	}
 
 	@Override
 	public String toString() {

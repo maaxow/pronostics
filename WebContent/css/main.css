@@ -55,3 +55,7 @@
 .little-text {
 	font-size: 10px;
 }
+
+.cell-center{
+	vertical-align: middle !important;
+}

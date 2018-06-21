@@ -7,7 +7,7 @@ import pronostics.model.Game;
 public class GameSQLBuilder extends AbstractSQLBuilder<Game> {
 
 	public GameSQLBuilder() {
-		this.tableName = "Game";
+		this.tableName = "game";
 		this.columnPKName = "game_id";
 		this.columns = new ArrayList<String>();
 		this.columns.add("game_id");
