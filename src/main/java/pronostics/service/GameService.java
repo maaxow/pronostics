@@ -18,10 +18,6 @@ public class GameService {
 	@Inject
 	public TeamRepository teamRepository;
 
-	public void printSomeStuff() {
-		System.out.println("Des trucs");
-	}
-	
 	public Game toGame(ResultSet resultSet) {
 		Game game = new Game();
 		try {

@@ -39,6 +39,16 @@ public class GameRestService {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	@POST
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response update(Game game) {
+		if (gameRepository != null) {
+			gameRepository.update(game);
+			return Response.ok().build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
 
 	@GET
 	@Path("/{id}")
@@ -94,6 +104,17 @@ public class GameRestService {
 			}
 			
 			return Response.ok(result).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	@GET
+	@Path("/not/scored")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response getNotScored() {
+		if (gameRepository != null) {
+			List<Game> games = gameRepository.findAllWithoutScore();
+			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

@@ -75,4 +75,10 @@ public class Resultat {
 	public int getNbBut2() {
 		return this.nbBut2;
 	}
+	public Gagnant getWinner() {
+		return winner;
+	}
+	public Gagnant getLoser() {
+		return Gagnant.getLoser(getNbBut1(), getNbBut2());
+	}
 }

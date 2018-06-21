@@ -168,6 +168,6 @@ public class Team {
 	
 	@Override
 	public String toString() {
-		return getName();
+		return getName() + "[" + getGroup() + "]";
 	}
 }

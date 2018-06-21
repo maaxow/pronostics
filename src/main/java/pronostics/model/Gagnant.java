@@ -16,4 +16,15 @@ public enum Gagnant {
 			return Gagnant.DRAW; 
 		}
 	}
+	public static Gagnant getLoser(int goalTeam1, int goalTeam2) {
+		if(goalTeam1 > goalTeam2){
+			return Gagnant.DEUX;
+		}
+		else if(goalTeam1 < goalTeam2){
+			return Gagnant.UN;
+		}
+		else { 
+			return Gagnant.DRAW; 
+		}
+	}
 }

@@ -28,7 +28,12 @@ public class GameRepository implements IRepository<Game> {
 	private static final String saveQuery = gameBuilder.buildSaveQuery();
 	private static final String updateQuery = gameBuilder.buildUpdateQuery();
 	private static final String deleteQuery = gameBuilder.buildDeleteQuery();
+	/**
+	 * Ended by "...(?" => finish the construction of the query
+	 */
 	private static final String findByExceptListIdQuery = "SELECT * FROM game WHERE game_id NOT IN (?";
+	private static final String findAllByTeamIdQuery = "SELECT * FROM game WHERE (team_id_1 = ? OR team_id_2 = ?) AND game_date < NOW();";
+	private static final String findAllWithoutScoreQuery = "SELECT * FROM game WHERE (goal_team_1 = -1 OR goal_team_2 = -1) AND game_date < NOW();";
 	
 
 	@PostConstruct
@@ -84,6 +89,18 @@ public class GameRepository implements IRepository<Game> {
 		return games;
 	}
 
+	/**
+	 * List all game with the team_id (1 or 2), and filtered by date before now();
+	 * @param id
+	 * @return all game with the team_id
+	 */
+	public List<Game> findAllByTeamId(int id) {
+		List<Game> games = jdbcTemplate.query(findAllByTeamIdQuery, new Object[] {id, id},(resultSet, i) -> {
+			return gameService.toGame(resultSet);
+		});
+		return games;
+	}
+	
 	@Override
 	public int save(Game t) {
 		return jdbcTemplate.update(saveQuery, new Object[] { t.getDate(), t.getId(), t.getStadium(),
@@ -101,5 +118,17 @@ public class GameRepository implements IRepository<Game> {
 		return jdbcTemplate.update(deleteQuery, new Object[] { id });
 
 	}
+
+	/**
+	 * return all game without a correct score
+	 * @return
+	 */
+	public List<Game> findAllWithoutScore() {
+		List<Game> games = jdbcTemplate.query(findAllWithoutScoreQuery,(resultSet, i) -> {
+			return gameService.toGame(resultSet);
+		});
+		return games;
+	}
+
 
 }

@@ -25,6 +25,11 @@ angular.module('pronostic.directives.toolbar', ['pronostic.services.login'])
 							return false;
 						};
 						
+						$scope.isAdmin = function(){
+							if($scope.isLogged()){
+								return $scope.user.isAdmin;
+							}
+						}
 					}]
 			}
 }]);

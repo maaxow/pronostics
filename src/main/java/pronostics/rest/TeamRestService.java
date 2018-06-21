@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import pronostics.model.Team;
 import pronostics.repository.TeamRepository;
+import pronostics.service.TeamService;
 
 @Component
 @Path("/team")
@@ -22,13 +23,15 @@ public class TeamRestService {
 
 	@Inject
 	private TeamRepository teamRepository;
+	@Inject
+	private TeamService teamService;
 
 	@GET
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
 	public Response findAll() {
 		if (teamRepository != null) {
 			List<Team> teams = teamRepository.findAll();
-			return Response.ok(teams).build();
+			return Response.ok().build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -57,5 +60,20 @@ public class TeamRestService {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	@GET
+	@Path("/update/score")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response updatePoints() {
+		System.out.println("Updating points of teams ...");
+		if (teamRepository != null) {
+			List<Team> teams = teamRepository.findAll();
+			teamService.updatePoints(teams);
+			return Response.ok().build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	
 
 }

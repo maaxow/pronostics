@@ -22,6 +22,7 @@
 <!-- 	DIRECTIVES -->
 	<script src="directives/toolbar/toolbar.js"></script>
 <!-- 	COMPONENTS -->
+	<script src="components/admin/admin.js"></script>
 	<script src="components/login/login.js"></script>
 	<script src="components/groupe/groupe.js"></script>
 	<script src="components/calendar/calendar.js"></script>

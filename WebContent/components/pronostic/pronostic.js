@@ -6,21 +6,12 @@ angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
 	$scope.pronoDone = [];
 	$scope.but = [0,1,2,3,4,5,6,7,8,9,10]
 	
-//	$login.authenticate("maaxow","maaxow").then(function(userLogged){
-//		var user = userLogged;
-//		$scope.user = user;
-//		$scope.userId = user.id;
-//		$scope.updatePronoDone();
-//		$scope.updatePronoToDo();
-//	});
-	
 	$scope.updatePronoToDo = function(){
 		if($scope.userId){
 			$scope.updatePronoDone().then(function(){
 				var pronoDoneIdList = $scope.pronoDone.map(function(item){
 					return item.game.id;
 				});
-				console.log("prono", $scope.pronoDone);
 				pronoDoneIdList = pronoDoneIdList.length === 0 ? null : pronoDoneIdList;
 				// list a recup avec les prono deja fait par le mec
 				$game.getGameExceptList(pronoDoneIdList).then(function(response){
