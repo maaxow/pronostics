@@ -14,7 +14,6 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 	} else {
 		$state.go('home.login');
 	}
-	$scope.updateGameToDo();
 	
 	
 	$scope.updateGameToDo = function(){
@@ -22,6 +21,7 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 			$scope.gameToDo = response.data;
 		});
 	};
+	$scope.updateGameToDo();
 	
 	$scope.updatePoints = function(){
 		$team.updatePoints();
