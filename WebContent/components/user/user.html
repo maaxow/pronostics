@@ -1,0 +1,41 @@
+<div class="col-lg-8 offset-lg-4 form-group justify-content-center">
+	<h2>Bienvenue sur ta page {{user.username}} !</h2>
+</div>
+<div class="row">
+	<div class="col-lg-3 offset-lg-2">
+		<div class="card">
+			<div class="card-header"> Mise a jour des donnees personnelles</div>
+			<div class="card-body column">
+				
+				<div class="col-lg-9 form-group justify-content-center">
+					<input class="form-control" type="text" data-ng-model="newFirstname" placeholder="Prenom">
+				</div>
+				<div class="col-lg-9 form-group justify-content-center">
+					<input class="form-control" type="text" data-ng-model="newLastname" placeholder="Nom">
+				</div>
+				<div class="col-lg-3 offset-lg-8 form-group">
+					<button class="btn btn-outline-danger" data-ng-click="updateUser()">Modifier</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 offset-lg-1">
+		<div class="card">
+			<div class="card-header"> Mise a jour du mot de passe</div>
+			<div class="card-body column">
+				
+				<div class="col-lg-9 form-group justify-content-center">
+					<input class="form-control" type="password" data-ng-model="newPassword" placeholder="Nouveau mot de passe">
+				</div>
+				<div class="col-lg-3 offset-lg-8 form-group">
+					<button class="btn btn-outline-danger" data-ng-click="updateUserPassword()">Modifier</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+	

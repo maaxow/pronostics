@@ -17,5 +17,6 @@ angular.module('pronostic.controllers',[
 	'pronostic.controllers.pronostic',
 	'pronostic.controllers.home',
 	'pronostic.controllers.admin',
+	'pronostic.controllers.user',
 	]);
 

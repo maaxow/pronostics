@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="favicon.ico" />
 	<title>Pronostics</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- 	<meta charset="ISO-8859-1"> -->
@@ -23,6 +24,7 @@
 	<script src="directives/toolbar/toolbar.js"></script>
 <!-- 	COMPONENTS -->
 	<script src="components/admin/admin.js"></script>
+	<script src="components/user/user.js"></script>
 	<script src="components/login/login.js"></script>
 	<script src="components/groupe/groupe.js"></script>
 	<script src="components/calendar/calendar.js"></script>

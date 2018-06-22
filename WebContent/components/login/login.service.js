@@ -1,5 +1,5 @@
 angular.module('pronostic.services.login', ['ngCookies'])
-.service('$login', ['$cookies', '$http', '$q', function($cookies, $http, $q){
+.service('$login', ['$cookies', '$http', '$q','$user', function($cookies, $http, $q, $user){
 	
 	function User(){
 			this.id = null,
@@ -63,7 +63,7 @@ angular.module('pronostic.services.login', ['ngCookies'])
 		},
 		saveUser: function(user){
 			console.log("trying to save user :", user);
-			$http.put('rest/user', user).then(function(response){
+			$user.save(user).then(function(response){
 				console.log("response saving : ", response);
 			}, function(error){
 				console.log("error ! ", error);

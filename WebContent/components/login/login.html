@@ -7,31 +7,35 @@
 	<div class="row" ng-if="isLoggingForm">
 		<div class="col-lg-3 offset-lg-4">
 			<div class="card" >
-			    <h5 class="broadway h5 mb-3 card-header font-weight-normal">Connexion</h5>	
-			    <div class="row">	
-				    <div class="form-group col-lg-7 offset-lg-2">
-				    	<input class="form-control" type="text" placeholder="Identifiant" ng-model="login" required autofocus>
+				<div class="card-header">
+				    <h5 class="broadway font-weight-normal">Connexion</h5>	
+				</div>
+				<div class="card-body">
+				    <div class="row">	
+					    <div class="form-group col-lg-7 offset-lg-2">
+					    	<input class="form-control" type="text" placeholder="Identifiant" ng-model="login" required autofocus>
+					    </div>
 				    </div>
-			    </div>
-			    <div class="row">
-				    <div class="form-group col-lg-7 offset-2">
-				    	<input class="form-control" type="password" placeholder="Mot de Passe" ng-model="password" required>
+				    <div class="row">
+					    <div class="form-group col-lg-7 offset-2">
+					    	<input class="form-control" type="password" placeholder="Mot de Passe" ng-model="password" required>
+					    </div>
 				    </div>
-			    </div>
-			    <div class="alert alert-danger col-lg-8 offset-lg-2" role="alert" ng-if="errorLogging">
-			    	Erreur de connexion : {{message}}
-			    </div>
-			    <div class="row">
-				    <div class="col-lg-4 offset-lg-7">
-				   		<button class="btn btn-danger" ng-click="logging(login,password)">Connexion</button>
+				    <div class="alert alert-danger col-lg-8 offset-lg-2" role="alert" ng-if="errorLogging">
+				    	Erreur de connexion : {{message}}
 				    </div>
-			    </div><br>
-			   <div class="row">
-			   		<div class="col-lg-10 offset-lg-3">
-					    <span class="little-text">Tu n'as pas encore de compte ?</span>
-				   		<button class="btn btn-danger" ng-click="switchTo('subscribe')">Inscription</button>
-			   		</div>
-			   </div>
+				    <div class="row">
+					    <div class="col-lg-4 offset-lg-7 form-group">
+					   		<button class="btn btn-danger" ng-click="logging(login,password)">Connexion</button>
+					    </div>
+				    </div><hr>
+				   <div class="row">
+				   		<div class="col-lg-10 offset-lg-1 form-group">
+						    <span class="little-text">Tu n'as pas encore de compte ?</span>
+					   		<button class="btn btn-danger" ng-click="switchTo('subscribe')">Inscription</button>
+				   		</div>
+				   </div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,14 +64,14 @@
 				    </div>
 			    </div>
 			   <div class="row">
-			   		<div class="col-lg-4 offset-lg-7">
-				   		<button class="btn btn-danger" ng-click="save(saveUser)">Enregistrer</button>
+			   		<div class="col-lg-4 offset-lg-7 form-group">
+				   		<button class="btn btn-danger" data-ng-click="save(saveUser)">Enregistrer</button>
 			   		</div>
 			   </div>
 			   <br>
 			    <div class="row">
-				    <div class="col-lg-4 offset-lg-7">
-				   		<button class="btn btn-danger" ng-click="switchTo('connect')">Se connecter</button>
+				    <div class="col-lg-4 offset-lg-7 form-group">
+				   		<button class="btn btn-danger" data-ng-click="switchTo('connect')">Se connecter</button>
 				    </div>
 			    </div>
 			</div>

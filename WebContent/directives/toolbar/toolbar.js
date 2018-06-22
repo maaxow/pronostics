@@ -29,6 +29,10 @@ angular.module('pronostic.directives.toolbar', ['pronostic.services.login'])
 							if($scope.isLogged()){
 								return $scope.user.isAdmin;
 							}
+						};
+						
+						$scope.gotToUserPage = function(){
+							$state.go('home.user');
 						}
 					}]
 			}
