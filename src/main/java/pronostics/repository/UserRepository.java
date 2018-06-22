@@ -31,6 +31,8 @@ public class UserRepository implements IRepository<User> {
 	private static final String updateQuery = userBuilder.buildUpdateQuery();
 	private static final String deleteQuery = userBuilder.buildDeleteQuery();
 	private static final String findByUsernameQuery = "SELECT * FROM users WHERE username = ?;";
+	private static final String updateWithourPasswordQuery = "UPDATE users SET firstname=?, lastname=? WHERE user_id=?;";
+	private static final String updatePasswordQuery = "UPDATE users SET password=? WHERE user_id=?;";
 
 	@PostConstruct
 	private void postConstruct() {
@@ -84,7 +86,19 @@ public class UserRepository implements IRepository<User> {
 	@Override
 	public int update(User t) {
 		int nbRowAffected = jdbcTemplate.update(updateQuery,
-				new Object[] { t.getUsername(), t.getPassword(), t.getFirstname(), t.getLastname(), t.getId() });
+				new Object[] { t.getUsername(), authService.encryptPwd(t.getPassword()), t.getFirstname(), t.getLastname(), t.getId() });
+		return nbRowAffected;
+	}
+
+	public int updateWithoutPassword(User t) {
+		int nbRowAffected = jdbcTemplate.update(updateWithourPasswordQuery,
+				new Object[] { t.getFirstname(), t.getLastname(), t.getId() });
+		return nbRowAffected;
+	}
+
+	public int updatePassword(User user) {
+		int nbRowAffected = jdbcTemplate.update(updatePasswordQuery,
+				new Object[] { authService.encryptPwd(user.getPassword()), user.getId() });
 		return nbRowAffected;
 	}
 

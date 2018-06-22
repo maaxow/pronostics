@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -64,9 +65,28 @@ public class UserRestService {
 	}
 	
 	@POST
+	@Path("/{userId}/{firstname}/{lastname}")
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
-	public Response updateUser(User user) {
-		int nbRows = userRepository.update(user);
+	public Response updateUser(
+			@PathParam("userId") String userId, 
+			@PathParam("firstname") String firstname, 
+			@PathParam("lastname") String lastname) {
+		User user = userRepository.findById(Long.parseLong(userId));
+		user.setFirstname(firstname);
+		user.setLastname(lastname);
+		int nbRows = userRepository.updateWithoutPassword(user);
+		return Response.ok(nbRows).build();
+	}
+	
+	@POST
+	@Path("/{userId}/{password}")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response updateUserPassword(
+			@PathParam("userId") String userId, 
+			@PathParam("password") String password) {
+		User user = userRepository.findById(Long.parseLong(userId));
+		user.setPassword(password);
+		int nbRows = userRepository.updatePassword(user);
 		return Response.ok(nbRows).build();
 	}
 	
