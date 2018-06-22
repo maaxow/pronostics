@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="favicon.ico" />
 	<title>Pronostics</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- 	<meta charset="ISO-8859-1"> -->
