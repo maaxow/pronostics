@@ -10,7 +10,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/pronostics?useSSL=false" />
 		<property name="username" value="prono" />
-		<property name="password" value="prono" />
+		<property name="password" value="prono2k18" />
 	</bean>
 
 </beans>
