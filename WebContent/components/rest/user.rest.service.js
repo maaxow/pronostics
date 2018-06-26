@@ -18,6 +18,9 @@
 		},
 		updatePassword : function(userId, password){
 			return $http.post('rest/user/' + userId + '/' + password);
+		},
+		updateClassement : function(){
+			return $http.get('rest/user/classement');
 		}
 	};
 }]);

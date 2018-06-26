@@ -29,6 +29,8 @@ public class PronosticRepository implements IRepository<Pronostic> {
 	private static final String updateQuery = pronosticBuilder.buildUpdateQuery();
 	private static final String deleteQuery = pronosticBuilder.buildDeleteQuery();
 	private static final String findByUserIdQuery = "SELECT * FROM pronostic WHERE user_id = ?;";
+	private static final String findAllNotCalculatedQuery = "SELECT * FROM pronostic WHERE resultat = -99;";
+	private static final String updateResultatQuery = "UPDATE pronostic SET resultat = ? WHERE pronostic_id = ?;";
 	
 	@PostConstruct
 	private void postConstruct() {
@@ -64,11 +66,18 @@ public class PronosticRepository implements IRepository<Pronostic> {
 		
 		return pronostics;
 	}
+	public List<Pronostic> findAllNotCalculated() {
+		List<Pronostic> pronostics = jdbcTemplate.query(findAllNotCalculatedQuery, (resultSet, i) -> {
+			return pronosticService.toPronostic(resultSet);
+		});
+		
+		return pronostics;
+	}
 	
 	@Override
 	public int save(Pronostic t) {
 		int nbRowAffected = jdbcTemplate.update(saveQuery,
-				new Object[] { t.getGame().getId(), t.getUser().getId(), t.getGoalTeam1(), t.getGoalTeam2() });
+				new Object[] { t.getGame().getId(), t.getUser().getId(), t.getGoalTeam1(), t.getGoalTeam2(), t.getResultat() });
 		return nbRowAffected;
 	}
 
@@ -83,7 +92,11 @@ public class PronosticRepository implements IRepository<Pronostic> {
 		int nbRowAffected = jdbcTemplate.update(updateQuery, new Object[] { t.getGame().getId(), t.getUser().getId(),
 				t.getGoalTeam1(), t.getGoalTeam2(), t.getId() });
 		return nbRowAffected;
+	}
 
+	public int updateResultat(Pronostic t) {
+		int nbRowAffected = jdbcTemplate.update(updateResultatQuery, new Object[] { t.getResultat(), t.getId() });
+		return nbRowAffected;
 	}
 
 }

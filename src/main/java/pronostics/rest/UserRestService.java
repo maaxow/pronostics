@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -18,8 +17,10 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
+import pronostics.model.Pronostic;
 import pronostics.model.Role;
 import pronostics.model.User;
+import pronostics.repository.PronosticRepository;
 import pronostics.repository.UserRepository;
 import pronostics.service.AuthService;
 
@@ -29,6 +30,8 @@ public class UserRestService {
 
 	@Inject
 	private UserRepository userRepository;
+	@Inject
+	private PronosticRepository pronosticRepository;
 	@Inject
 	private AuthService authService;
 
@@ -96,5 +99,25 @@ public class UserRestService {
 	public Response deleteUser(@QueryParam("id") String id) {
 		int nbRows = userRepository.delete(Long.parseLong(id));
 		return Response.ok(nbRows).build();
+	}
+	
+	@GET
+	@Path("/classement")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response updateClassement() {
+		List<User> users = userRepository.findAll();
+		int scoreTotal = 0;
+		for(User user : users) {
+			List<Pronostic> pronos = pronosticRepository.findByUserId(user.getId());
+			for(Pronostic prono : pronos) {
+				if(prono.getResultat() >= -1) {
+					scoreTotal += prono.getResultat();
+				}
+			}
+			user.setPoint(scoreTotal);
+			userRepository.save(user);
+		}
+		// get all pronoo by user, and get all point
+		return Response.ok().build();
 	}
 }

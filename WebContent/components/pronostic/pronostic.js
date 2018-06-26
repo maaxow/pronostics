@@ -1,5 +1,6 @@
 angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
-.controller('PronosticController', ['$scope', '$login', '$game', '$http', '$state', function($scope, $login, $game, $http, $state){
+.controller('PronosticController', ['$scope', '$login', '$game', '$http', '$state', '$prono', '$notifier',
+	function($scope, $login, $game, $http, $state, $prono, $notifier){
 
 	$scope.userId = null;
 	$scope.pronoToDo = [];
@@ -21,7 +22,7 @@ angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
 		}
 	};
 	$scope.updatePronoDone = function(){
-		return $http.get('rest/pronostic/user/'+$scope.userId).then(function(response){
+		return $prono.getByUser($scope.userId).then(function(response){
 			$scope.pronoDone = response.data;
 		});
 	};
@@ -32,26 +33,33 @@ angular.module('pronostic.controllers.pronostic',['pronostic.rest.service'])
 	
 	$scope.validateProno = function(game){
 		var goalTeam1 = game.goalTeam1;
-		delete game.goalTeam1;
 		var goalTeam2 = game.goalTeam2;
-		delete game.goalTeam2;
 		
-		var prono = {
-				game: game,
-				user: {
-					id: $scope.user.id,
-					username:$scope.user.username,
-					password:$scope.user.password,
-					firstname:$scope.user.firstname,
-					lastname:$scope.user.lastname,
-					role:$scope.user.isAdmin?'ADMIN':'USER',
-				},
-				goalTeam1: goalTeam1,
-				goalTeam2: goalTeam2
+		if(goalTeam1 != -1 && goalTeam2 != -1){
+			delete game.goalTeam1;
+			delete game.goalTeam2;
+			var prono = {
+					game: game,
+					user: {
+						id: $scope.user.id,
+						username:$scope.user.username,
+						password:$scope.user.password,
+						firstname:$scope.user.firstname,
+						lastname:$scope.user.lastname,
+						role:$scope.user.isAdmin?'ADMIN':'USER',
+					},
+					goalTeam1: goalTeam1,
+					goalTeam2: goalTeam2
+			}
+			$prono.save(prono).then(function(response){
+				$notifier.success("Pronostique valide");
+				$scope.updatePronoToDo();
+			}, function(){
+				$notifier.error("Erreur Pronostique");
+			});
+		} else {
+			$notifier.error("Erreur Pronostique");
 		}
-		$http.post('rest/pronostic/new', prono).then(function(response){
-			$scope.updatePronoToDo();
-		})
 	};
 	if($login.isLogged()){
 		$scope.user = $login.getUserLogged();

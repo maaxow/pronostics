@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import pronostics.model.Game;
 import pronostics.model.Pronostic;
+import pronostics.model.Resultat;
 import pronostics.model.User;
 import pronostics.repository.GameRepository;
 import pronostics.repository.UserRepository;
@@ -22,13 +23,12 @@ public class PronosticService {
 	@Inject
 	public UserRepository userRepository;
 
-	public void printSomeStuff() {
-		System.out.println("Des trucs");
-	}
-	
 	public int calculatePoint(Pronostic prono) {
 		
-		return 0;
+		Resultat pronoRes = new Resultat(prono);
+		Resultat gameRes = new Resultat(prono.getGame());
+		
+		return Resultat.calculateNbPoint(pronoRes, gameRes);
 	}
 	
 	/**

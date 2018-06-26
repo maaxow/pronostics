@@ -59,3 +59,18 @@
 .cell-center{
 	vertical-align: middle !important;
 }
+#notifier {
+	position: absolute;
+}
+.notifier-hide {
+	display:none;
+}
+.notifier-show {
+	display: block;
+}
+.colorRed {
+	color:red;
+}
+.colorGreen {
+	color:green;
+}

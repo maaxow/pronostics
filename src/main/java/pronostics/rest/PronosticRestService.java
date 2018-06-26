@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import pronostics.model.Pronostic;
 import pronostics.repository.PronosticRepository;
+import pronostics.service.PronosticService;
 
 @Component
 @Path("/pronostic")
@@ -21,13 +22,14 @@ public class PronosticRestService {
 
 	@Inject
 	private PronosticRepository pronosticRepository;
+	@Inject
+	private PronosticService pronosticService;
 
 	@GET
 	public Response findAll() {
 		if (pronosticRepository != null) {
 			List<Pronostic> games = pronosticRepository.findAll();
-			System.out.println(games.toString());
-			return Response.ok(games.toString()).build();
+			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -38,7 +40,6 @@ public class PronosticRestService {
 	public Response findByIdToto(@PathParam("id") String id) {
 		if (pronosticRepository != null) {
 			Pronostic game = pronosticRepository.findById(Long.parseLong(id));
-			System.out.println("[" + this.hashCode() + "] " + game.toString());
 			return Response.ok(game).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
@@ -61,6 +62,38 @@ public class PronosticRestService {
 		if (pronosticRepository != null) {
 			int nbPronoSaved = pronosticRepository.save(prono);
 			return Response.ok(nbPronoSaved).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	@GET
+	@Path("/update/points")
+	public Response updatePoints() {
+		if (pronosticRepository != null) {
+			List<Pronostic> pronos = pronosticRepository.findAllNotCalculated();
+			for(Pronostic prono : pronos) {
+				if(prono.getGame().getGoalTeam1() != 1 && prono.getGame().getGoalTeam2() != 1) {
+					int points = pronosticService.calculatePoint(prono);
+					prono.setResultat(points);
+					pronosticRepository.updateResultat(prono);
+				}
+			}
+			return Response.ok(pronos).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	@GET
+	@Path("/calculate/points/{pronoId}")
+	public Response updatePoints(@PathParam("pronoId") String pronoId) {
+		if (pronosticRepository != null) {
+			Pronostic prono = pronosticRepository.findById(Long.parseLong(pronoId));
+				if(prono.getGame().getGoalTeam1() != 1 && prono.getGame().getGoalTeam2() != 1) {
+					int points = pronosticService.calculatePoint(prono);
+					return Response.ok(points).build();
+				} else {
+					return Response.ok(-99).build();
+			}
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

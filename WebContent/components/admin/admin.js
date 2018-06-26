@@ -1,19 +1,22 @@
 angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
-.controller('AdminController', ['$scope', '$team','$login','$state', '$game', function($scope, $team, $login, $state, $game){
+.controller('AdminController', ['$scope', '$team','$login','$state', '$game', '$user', '$prono', 
+	function($scope, $team, $login, $state, $game, $user, $prono){
 	$scope.user = {};
 	$scope.gameToDo = [];
 	
-	if($login.isLogged()){
-		$scope.user = $login.getUserLogged();
-		if($scope.user != null){
-			$scope.userId = $scope.user.id;
-		}
-		else {
+	$login.authenticate("max", "dodie").then(function(){
+		if($login.isLogged()){
+			$scope.user = $login.getUserLogged();
+			if($scope.user != null){
+				$scope.userId = $scope.user.id;
+			}
+			else {
+				$state.go('home.login');
+			}
+		} else {
 			$state.go('home.login');
 		}
-	} else {
-		$state.go('home.login');
-	}
+	})
 	
 	
 	$scope.updateGameToDo = function(){
@@ -33,6 +36,36 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 				$scope.updateGameToDo();
 			});
 		}
-	}
+	};
+	
+	$scope.updateClassement = function(){
+		console.log("update points :");
+		$prono.updatePoints();
+//		$user.updateClassement().then(function(response){
+//			console.log("response classement", response);
+//		});
+	};
+	
+	$scope.pronos = [];
+	$scope.updatePronoDone = function(){
+		$prono.getAll().then(function(reponse){
+			console.log("reponse : ", reponse);
+			$scope.pronos = reponse.data;
+		})
+	};
+	$scope.updatePronoDone();
+	
+	/**  
+	 * return 1 or 2
+	 */
+	$scope.isWinner = function(res){
+		if(res.goalTeam1 > res.goalTeam2){
+			return 1;
+		} else if(res.goalTeam1 < res.goalTeam2){
+			return 2;
+		} else {
+			return 0;
+		}
+	};
 }]);
 	

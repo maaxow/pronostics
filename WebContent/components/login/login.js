@@ -1,6 +1,6 @@
 angular.module('pronostic.controllers.login', [])
-.controller('LoginController', ['$scope', '$login', '$state', function($scope, $login, $state){
-		$scope.message = "On est bien sur la page de Login !!!";
+.controller('LoginController', ['$scope', '$login', '$state', '$notifier',
+	function($scope, $login, $state, $notifier){
 		
 		$scope.login = "";
 		$scope.password = "";
@@ -19,18 +19,22 @@ angular.module('pronostic.controllers.login', [])
 		
 		$scope.logging = function(login, password){
 			$login.authenticate(login, password).then(function(userLogged){
+				$notifier.success("Authentification reussi");
 				$scope.user = userLogged;
-				$scope.errorLogging = false;
 				$state.go('home.calendar');
 			}, function(error){
 				console.log("error !!!!", error);
-				$scope.errorLogging = true;
-				$scope.message = error;
+				$notifier.error("Erreur a la connexion");
 			});
 		};
 		
 		$scope.save = function(){
-			$login.saveUser($scope.saveUser);
+			$login.saveUser($scope.saveUser).then(function(){
+				$notifier.success("Creation du compte reussi");
+			}, function(error){
+				$notifier.error("Errur lors de la creation");
+				console.log("error");
+			});
 			$scope.switchTo('connect');
 		}
 		$scope.switchTo = function(mode){

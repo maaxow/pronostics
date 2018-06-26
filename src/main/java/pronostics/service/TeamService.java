@@ -94,7 +94,6 @@ public class TeamService {
 			team.setGoalScored(nbGoalScored);
 			team.setGoalTaken(nbGoalTaken);
 			team.setPoint(nbPoint);
-			System.out.println("Groupe of the team : "+ team + " groupe : " + team.getGroup());
 			teamRepository.update(team);
 		}
 	}

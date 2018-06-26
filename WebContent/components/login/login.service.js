@@ -54,6 +54,8 @@ angular.module('pronostic.services.login', ['ngCookies'])
 				} else {
 					defer.reject();
 				}
+			}, function(error){
+				defer.reject(error);
 			});
 			return defer.promise;
 		},
@@ -62,12 +64,7 @@ angular.module('pronostic.services.login', ['ngCookies'])
 			_isLogged = false;
 		},
 		saveUser: function(user){
-			console.log("trying to save user :", user);
-			$user.save(user).then(function(response){
-				console.log("response saving : ", response);
-			}, function(error){
-				console.log("error ! ", error);
-			});
+			return $user.save(user);
 		},
 		getUserLogged: function(){
 			if(_isLogged){

@@ -1,5 +1,6 @@
 
-angular.module('pronostic',['ui.router', 'pronostic.rest.service', 
+angular.module('pronostic',['ui.router', 
+	'pronostic.services', 
 	'pronostic.controllers', 
 	'pronostic.directives.toolbar', 
 	'pronostics.constants'])

@@ -51,7 +51,7 @@ public class Resultat {
 	 * @param game
 	 * @return
 	 */
-	public int calculateNbPoint(Resultat prono, Resultat game){
+	public static int calculateNbPoint(Resultat prono, Resultat game){
 		if(prono.winner == game.winner){ // Bon prono
 			if(prono.getNbButWinner() == game.getNbButWinner()){ // bon nb but gagnant
 				if(prono.getNbButLoser() == game.getNbButLoser()){ // bon nb but perdant

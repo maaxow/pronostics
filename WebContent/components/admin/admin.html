@@ -1,30 +1,79 @@
 <h1 class="col-lg-6 offset-4">Page d'administration</h1>
 <br>
-<div class="column">
-	<div class="row col-lg-3 offset-lg-5">
-		<button class="btn btn-outline-danger" data-ng-click="updatePoints()">Mettre a jour les scores des equipes</button>
+<ul class="nav nav-tabs" id="tabList" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link" id="score-tab" data-toggle="tab" href="#score" role="tab" aria-controls="score" aria-selected="false">Scores</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="match-tab" data-toggle="tab" href="#match" role="tab" aria-controls="match" aria-selected="false">Matchs</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link active" id="prono-tab" data-toggle="tab" href="#prono" role="tab" aria-controls="prono" aria-selected="true">Pronostiques</a>
+	</li>
+</ul>
+
+<div class="tab-content" id="tabContent">
+<!-- 	TAB 1 -->
+	<div class="tab-pane fade" id="score" role="tabpanel" aria-labelleby="score-tab">
+		<div class="column">
+			<div class="row col-lg-3 offset-lg-5">
+				<button class="btn btn-outline-danger" data-ng-click="updatePoints()">Mettre a jour les scores des equipes</button>
+			</div>
+			<div class="row col-lg-3 offset-lg-5">
+				<button class="btn btn-outline-danger" data-ng-click="updateClassement()">Mettre a jour le classement</button>
+			</div>
+		</div>
 	</div>
-	<br>
-	<div class="column col-lg-6 offset-lg-3" style="padding: 5px;">
-<!-- 		LIST OF GAME NO SCORED -->
-		<table class="table table-borderless" data-ng-repeat="game in gameToDo | orderBy: 'date'" ng-if="!isAfterNow(game.date)">
-			<tr>
-				<td>
-					<img src="img/flags/{{game.team1.name}}.png" title="{{game.team1.name}}">
-				</td>
-				<td>
-					<input class="form-control" type="number" data-ng-model="game.goalTeam1">
-				</td>
-				<td><strong>{{game.date | date: format: 'dd/MM/yyyy HH:mm:SS'}}</strong></td>
-				<td>
-					<input class="form-control" type="number" data-ng-model="game.goalTeam2">
-				</td>
-				<td><img src="img/flags/{{game.team2.name}}.png" title="{{game.team2.name}}"></td>
-			</tr>
-			<tr style="text-align:center">
-				<td colspan="5"><button name="Submit" data-ng-click="validateScore(game)">Validacion</button></td>
-			</tr>
-		</table>
+	<div class="tab-pane fade" id="match" role="tabpanel" aria-labelleby="match-tab">
+		<div class="column col-lg-6 offset-lg-3" style="padding: 5px;">
+	<!-- 		LIST OF GAME NO SCORED -->
+			<table class="table table-borderless" data-ng-repeat="game in gameToDo | orderBy: 'date'" ng-if="!isAfterNow(game.date)">
+				<tr>
+					<td>
+						<img src="img/flags/{{game.team1.name}}.png" title="{{game.team1.name}}">
+					</td>
+					<td>
+						<input class="form-control" type="number" data-ng-model="game.goalTeam1">
+					</td>
+					<td><strong>{{game.date | date: format: 'dd/MM/yyyy HH:mm:SS'}}</strong></td>
+					<td>
+						<input class="form-control" type="number" data-ng-model="game.goalTeam2">
+					</td>
+					<td><img src="img/flags/{{game.team2.name}}.png" title="{{game.team2.name}}"></td>
+				</tr>
+				<tr style="text-align:center">
+					<td colspan="5"><button name="Submit" data-ng-click="validateScore(game)">Validacion</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="tab-pane fade show active" id="prono" role="tabpanel" aria-labelleby="prono-tab">
+		<div class="column col-lg-6 offset-lg-3" style="padding: 5px;">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Prénom Nom</th>
+						<th>Pronostique</th>
+						<th>Points</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="prono in pronos | orderBy: 'firstname'">
+						<td>{{prono.id}}</td>
+						<td>{{prono.user.firstname}} {{prono.user.lastname}}</td>
+						<td>
+						<strong data-ng-class="{'colorRed': isWinner(prono, true) != isWinner(prono.game, false), 'colorGreen': isWinner(prono, true) == isWinner(prono.game, false)}">{{prono.game.team1.name}}</strong> <span data-ng-class="{'colorRed' : prono.goalTeam1 != prono.game.goalTeam1, 'colorGreen': prono.goalTeam1 == prono.game.goalTeam1}">{{prono.goalTeam1}}</span> - <span data-ng-class="{'colorRed' : prono.goalTeam2 != prono.game.goalTeam2, 'colorGreen': prono.goalTeam2 == prono.game.goalTeam2}">{{prono.goalTeam2}}</span> <strong data-ng-class="{'colorRed': isWinner(prono, true) != isWinner(prono.game, false), 'colorGreen': isWinner(prono, true) == isWinner(prono.game, false)}">{{prono.game.team2.name}}</strong> <br>
+						<span class="little-text">{{prono.game.team1.name}} {{prono.game.goalTeam1}} - {{prono.game.goalTeam2}} {{prono.game.team2.name}}</span>
+						</td>
+						<td>{{prono.resultat}}</td>
+						<td><button class="btn btn-outline-info" type="button">calculate</button></td>
+						<td><button class="btn btn-outline-info" type="button">validate</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 

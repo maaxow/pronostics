@@ -18,8 +18,10 @@
 	<script src="components/rest/user.rest.service.js"></script>
 	<script src="components/rest/game.rest.service.js"></script>
 	<script src="components/rest/team.rest.service.js"></script>
-	<script src="components/rest/rest.service.js"></script>
+	<script src="components/rest/pronostic.rest.service.js"></script>
 	<script src="components/login/login.service.js"></script>
+	<script src="components/notifier/notifier.service.js"></script>
+	<script src="components/rest/rest.service.js"></script>
 <!-- 	DIRECTIVES -->
 	<script src="directives/toolbar/toolbar.js"></script>
 <!-- 	COMPONENTS -->

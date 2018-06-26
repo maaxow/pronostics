@@ -15,5 +15,6 @@ public class PronosticSQLBuilder extends AbstractSQLBuilder<Game> {
 		this.columns.add("user_id");
 		this.columns.add("goal_team_1");
 		this.columns.add("goal_team_2");
+		this.columns.add("resultat");
 	}
 }

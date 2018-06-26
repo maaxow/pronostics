@@ -1,21 +1,24 @@
-angular.module('pronostic.rest.service.team', [])
-.service('$team', ['$http', 'PRONO', function($http, PRONO){
-	var restUrl = PRONO.contextPath + "/rest";
+angular.module('pronostic.rest.service.prono', [])
+.service('$prono', ['$http', function($http){
 	return {
 		getAll : function(){
-			return $http.get(restUrl + '/team');
+			return $http.get('rest/pronostic');
 		},
 		get: function(id){
-			return $http.get(restUrl + '/team/'+id);
+			return $http.get('rest/pronostic/'+id);
 		},
-		getByGroupe: function(groupe){
-			return $http.get(restUrl + '/team/groupe/'+groupe);
+		getByUser: function(userId){
+			return $http.get('rest/pronostic/user/'+userId);
 		},
-		save : function(team){
-			return $http.put(restUrl + '/team', {team: team});
+		save : function(pronostic){
+			return $http.post('rest/pronostic/new', pronostic);
 		},
-		update : function(team){
-			return $http.post(restUrl + '/team', {team: team});
+		update : function(pronostic){
+			return $http.post('rest/pronostic', pronostic);
+		},
+		updatePoints : function(){
+			console.log("update points");
+			return $http.get('rest/pronostic/update/points');
 		}
 	};
 }]);

@@ -20,11 +20,15 @@
 			</div>
 		</div>
 	</div>
-	<nav class="colorNav navbar navbar-expand-lg bg-light">
+	<nav class="colorNav navbar navbar-expand-lg navbar-expand-sm bg-light">
 		
-		<div id="navbarNav" class="toolbarNav row col-lg-6 offset-lg-3" ng-class="{'col-lg-6 offset-lg-3': isLogged(), 'col-lg-5 offset-lg-4': !isLogged()}">
+		<button class="navbar-toggler" type="button" data-toggle="collaspe" data-target="#navbarNav" aria-controls="navbarNav" data-aria-expanded="false" data-aria-label="Toggle navigation">
+			<i class="material-icons" style="color: white;">menu</i>
+		</button>
+		
+		<div id="navbarNav" class="toolbarNav row collapse navbar-collaspe show" ng-class="{'col-lg-6 offset-lg-3': isLogged(), 'col-lg-5 col-5 offset-lg-4': !isLogged()}">
 			<ul class="navbar-nav">
-				<li class="nav-item" ng-if="$login.isLogged()">
+				<li class="nav-item" data-ng-if="$login.isLogged()">
 					<a class="nav-link toolbarItem" data-ui-sref="home.pronostic">Pronostiques</a>
 				</li>
 				<li class="nav-item">
