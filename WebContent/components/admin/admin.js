@@ -4,19 +4,17 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 	$scope.user = {};
 	$scope.gameToDo = [];
 	
-	$login.authenticate("max", "dodie").then(function(){
-		if($login.isLogged()){
-			$scope.user = $login.getUserLogged();
-			if($scope.user != null){
-				$scope.userId = $scope.user.id;
-			}
-			else {
-				$state.go('home.login');
-			}
-		} else {
+	if($login.isLogged()){
+		$scope.user = $login.getUserLogged();
+		if($scope.user != null){
+			$scope.userId = $scope.user.id;
+		}
+		else {
 			$state.go('home.login');
 		}
-	})
+	} else {
+		$state.go('home.login');
+	}
 	
 	
 	$scope.updateGameToDo = function(){
