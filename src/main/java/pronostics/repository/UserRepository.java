@@ -33,6 +33,7 @@ public class UserRepository implements IRepository<User> {
 	private static final String findByUsernameQuery = "SELECT * FROM users WHERE username = ?;";
 	private static final String updateWithourPasswordQuery = "UPDATE users SET firstname=?, lastname=? WHERE user_id=?;";
 	private static final String updatePasswordQuery = "UPDATE users SET password=? WHERE user_id=?;";
+	private static final String updatePointQuery = "UPDATE users SET user_point = ? WHERE user_id = ?;";
 
 	@PostConstruct
 	private void postConstruct() {
@@ -99,6 +100,12 @@ public class UserRepository implements IRepository<User> {
 	public int updatePassword(User user) {
 		int nbRowAffected = jdbcTemplate.update(updatePasswordQuery,
 				new Object[] { authService.encryptPwd(user.getPassword()), user.getId() });
+		return nbRowAffected;
+	}
+	
+	public int updatePoint(User user) {
+		int nbRowAffected = jdbcTemplate.update(updatePointQuery,
+				new Object[] { user.getPoint(), user.getId() });
 		return nbRowAffected;
 	}
 

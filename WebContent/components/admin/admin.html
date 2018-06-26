@@ -1,25 +1,25 @@
 <h1 class="col-lg-6 offset-4">Page d'administration</h1>
 <br>
-<ul class="nav nav-tabs" id="tabList" role="tablist">
+<ul class="nav nav-tabs col-lg-3 offset-lg-4 justify-content-between" id="tabList" role="tablist" style="margin-bottom: 10px;">
 	<li class="nav-item">
-		<a class="nav-link" id="score-tab" data-toggle="tab" href="#score" role="tab" aria-controls="score" aria-selected="false">Scores</a>
+		<a class="nav-link active" id="score-tab" data-toggle="tab" href="#score" role="tab" aria-controls="score" aria-selected="true">Scores</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link" id="match-tab" data-toggle="tab" href="#match" role="tab" aria-controls="match" aria-selected="false">Matchs</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link active" id="prono-tab" data-toggle="tab" href="#prono" role="tab" aria-controls="prono" aria-selected="true">Pronostiques</a>
+		<a class="nav-link" id="prono-tab" data-toggle="tab" href="#prono" role="tab" aria-controls="prono" aria-selected="false">Pronostiques</a>
 	</li>
 </ul>
 
 <div class="tab-content" id="tabContent">
 <!-- 	TAB 1 -->
-	<div class="tab-pane fade" id="score" role="tabpanel" aria-labelleby="score-tab">
-		<div class="column">
-			<div class="row col-lg-3 offset-lg-5">
+	<div class="tab-pane fade show active" id="score" role="tabpanel" aria-labelleby="score-tab">
+		<div class="row">
+			<div class="col-lg-3 offset-lg-3">
 				<button class="btn btn-outline-danger" data-ng-click="updatePoints()">Mettre a jour les scores des equipes</button>
 			</div>
-			<div class="row col-lg-3 offset-lg-5">
+			<div class="col-lg-3">
 				<button class="btn btn-outline-danger" data-ng-click="updateClassement()">Mettre a jour le classement</button>
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="tab-pane fade show active" id="prono" role="tabpanel" aria-labelleby="prono-tab">
+	<div class="tab-pane fade" id="prono" role="tabpanel" aria-labelleby="prono-tab">
 		<div class="column col-lg-6 offset-lg-3" style="padding: 5px;">
 			<table class="table">
 				<thead>
@@ -68,7 +68,7 @@
 						<span class="little-text">{{prono.game.team1.name}} {{prono.game.goalTeam1}} - {{prono.game.goalTeam2}} {{prono.game.team2.name}}</span>
 						</td>
 						<td>{{prono.resultat}}</td>
-						<td><button class="btn btn-outline-info" type="button">calculate</button></td>
+						<td><button class="btn btn-outline-info" type="button" data-ng-click="calculateProno(prono)">calculate</button></td>
 						<td><button class="btn btn-outline-info" type="button">validate</button></td>
 					</tr>
 				</tbody>

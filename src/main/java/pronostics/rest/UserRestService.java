@@ -106,8 +106,9 @@ public class UserRestService {
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
 	public Response updateClassement() {
 		List<User> users = userRepository.findAll();
-		int scoreTotal = 0;
+		int scoreTotal;
 		for(User user : users) {
+			scoreTotal = 0;
 			List<Pronostic> pronos = pronosticRepository.findByUserId(user.getId());
 			for(Pronostic prono : pronos) {
 				if(prono.getResultat() >= -1) {
@@ -115,7 +116,7 @@ public class UserRestService {
 				}
 			}
 			user.setPoint(scoreTotal);
-			userRepository.save(user);
+			userRepository.updatePoint(user);
 		}
 		// get all pronoo by user, and get all point
 		return Response.ok().build();

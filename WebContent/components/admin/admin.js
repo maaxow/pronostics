@@ -39,11 +39,12 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 	};
 	
 	$scope.updateClassement = function(){
-		console.log("update points :");
-		$prono.updatePoints();
-//		$user.updateClassement().then(function(response){
-//			console.log("response classement", response);
-//		});
+		$prono.updatePoints().then(function(response){
+			$user.updateClassement().then(function(response2){
+				// nothing to do
+				$notifier.success("Classement mis a jour");
+			});
+		});
 	};
 	
 	$scope.pronos = [];

@@ -53,6 +53,9 @@ public class TeamService {
 			team.setNbGame(games.size());
 			
 			for(Game game : games) {
+				if(game.getGoalTeam1() == -1 || game.getGoalTeam2() == -1) {
+					continue;
+				}
 				position = game.getPositionNumber(team.getId());
 				
 				Resultat result = new Resultat(game);
@@ -69,7 +72,7 @@ public class TeamService {
 						nbPoint ++;
 					}
 					nbGoalScored += result.getNbBut1();
-					nbGoalScored += result.getNbBut2();
+					nbGoalTaken += result.getNbBut2();
 				}
 				else if(position == 2) {
 					if(result.getWinner().equals(Gagnant.DEUX)) { // WIN
@@ -84,7 +87,7 @@ public class TeamService {
 						nbPoint ++;
 					}
 					nbGoalScored += result.getNbBut2();
-					nbGoalScored += result.getNbBut1();
+					nbGoalTaken += result.getNbBut1();
 					
 				}
 			}
