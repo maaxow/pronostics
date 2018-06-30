@@ -8,7 +8,7 @@ angular.module('pronostic.controllers.group',['pronostic.rest.service'])
 		E : [],	
 		F : [],	
 		G : [],	
-		H : []	
+		H : []
 	};
 	$scope.init = function(){
 		$team.getByGroupe("A").then(function(response){

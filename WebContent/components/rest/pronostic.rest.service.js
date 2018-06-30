@@ -16,6 +16,9 @@ angular.module('pronostic.rest.service.prono', [])
 		update : function(pronostic){
 			return $http.post('rest/pronostic', pronostic);
 		},
+		updatePronoPoint: function(prono){
+			return $http.post('rest/pronostic/update/points', prono);
+		},
 		updatePoints : function(){
 			console.log("update points");
 			return $http.get('rest/pronostic/update/points');

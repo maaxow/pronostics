@@ -34,6 +34,7 @@ public class GameRepository implements IRepository<Game> {
 	private static final String findByExceptListIdQuery = "SELECT * FROM game WHERE game_id NOT IN (?";
 	private static final String findAllByTeamIdQuery = "SELECT * FROM game WHERE (team_id_1 = ? OR team_id_2 = ?) AND game_date < NOW();";
 	private static final String findAllWithoutScoreQuery = "SELECT * FROM game WHERE (goal_team_1 = -1 OR goal_team_2 = -1) AND game_date < NOW();";
+	private static final String findAllFinalesQuery = "SELECT * FROM game g INNER JOIN team t ON g.team_id_1 = t.team_id WHERE t.groupe = \"W\" OR t.groupe = \"X\" OR t.groupe = \"Y\" OR t.groupe = \"Z\";";
 	
 
 	@PostConstruct
@@ -125,6 +126,13 @@ public class GameRepository implements IRepository<Game> {
 	 */
 	public List<Game> findAllWithoutScore() {
 		List<Game> games = jdbcTemplate.query(findAllWithoutScoreQuery,(resultSet, i) -> {
+			return gameService.toGame(resultSet);
+		});
+		return games;
+	}
+
+	public List<Game> findFinales() {
+		List<Game> games = jdbcTemplate.query(findAllFinalesQuery,(resultSet, i) -> {
 			return gameService.toGame(resultSet);
 		});
 		return games;

@@ -4,17 +4,19 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 	$scope.user = {};
 	$scope.gameToDo = [];
 	
-	if($login.isLogged()){
-		$scope.user = $login.getUserLogged();
-		if($scope.user != null){
-			$scope.userId = $scope.user.id;
-		}
-		else {
+	$login.authenticate("max","dodie").then(function(){
+		if($login.isLogged()){
+			$scope.user = $login.getUserLogged();
+			if($scope.user != null){
+				$scope.userId = $scope.user.id;
+			}
+			else {
+				$state.go('home.login');
+			}
+		} else {
 			$state.go('home.login');
 		}
-	} else {
-		$state.go('home.login');
-	}
+	});
 	
 	
 	$scope.updateGameToDo = function(){
@@ -54,6 +56,11 @@ angular.module('pronostic.controllers.admin',['pronostic.rest.service'])
 	};
 	$scope.updatePronoDone();
 	
+	$scope.validateProno = function(prono){
+		$prono.updatePronoPoint(prono).then(function(){
+			$notifier.success("Prono modifie !");
+		});
+	};
 	/**  
 	 * return 1 or 2
 	 */

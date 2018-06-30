@@ -20,7 +20,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import pronostics.model.Game;
+import pronostics.model.Team;
 import pronostics.repository.GameRepository;
+import pronostics.repository.TeamRepository;
 
 @Component
 @Path("/game")
@@ -28,6 +30,8 @@ public class GameRestService {
 
 	@Inject
 	private GameRepository gameRepository;
+	@Inject
+	private TeamRepository teamRepository;
 
 	@GET
 	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
@@ -114,6 +118,18 @@ public class GameRestService {
 	public Response getNotScored() {
 		if (gameRepository != null) {
 			List<Game> games = gameRepository.findAllWithoutScore();
+			return Response.ok(games).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	@GET
+	@Path("/finales")
+	@Produces(value = {MediaType.APPLICATION_JSON_VALUE})
+	public Response findFinales() {
+		if (gameRepository != null) {
+			List<Game> games = gameRepository.findFinales();
 			return Response.ok(games).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();

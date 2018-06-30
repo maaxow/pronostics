@@ -21,6 +21,9 @@ angular.module('pronostic.rest.service.game', [])
 		},
 		getGameNotScored: function(){
 			return $http.get('rest/game/not/scored');
+		},
+		getFinaleGame: function(){
+			return $http.get('rest/game/finales');
 		}
 	};
 }]);

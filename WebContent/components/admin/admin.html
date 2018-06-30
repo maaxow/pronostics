@@ -67,9 +67,9 @@
 						<strong data-ng-class="{'colorRed': isWinner(prono, true) != isWinner(prono.game, false), 'colorGreen': isWinner(prono, true) == isWinner(prono.game, false)}">{{prono.game.team1.name}}</strong> <span data-ng-class="{'colorRed' : prono.goalTeam1 != prono.game.goalTeam1, 'colorGreen': prono.goalTeam1 == prono.game.goalTeam1}">{{prono.goalTeam1}}</span> - <span data-ng-class="{'colorRed' : prono.goalTeam2 != prono.game.goalTeam2, 'colorGreen': prono.goalTeam2 == prono.game.goalTeam2}">{{prono.goalTeam2}}</span> <strong data-ng-class="{'colorRed': isWinner(prono, true) != isWinner(prono.game, false), 'colorGreen': isWinner(prono, true) == isWinner(prono.game, false)}">{{prono.game.team2.name}}</strong> <br>
 						<span class="little-text">{{prono.game.team1.name}} {{prono.game.goalTeam1}} - {{prono.game.goalTeam2}} {{prono.game.team2.name}}</span>
 						</td>
-						<td>{{prono.resultat}}</td>
-						<td><button class="btn btn-outline-info" type="button" data-ng-click="calculateProno(prono)">calculate</button></td>
-						<td><button class="btn btn-outline-info" type="button">validate</button></td>
+						<td>
+						<input class="form-control" type="number" data-ng-model="prono.resultat" /></td>
+						<td><button class="btn btn-outline-info" type="button" data-ng-click="validateProno(prono)">validate</button></td>
 					</tr>
 				</tbody>
 			</table>

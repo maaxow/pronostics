@@ -1,3 +1,63 @@
 
-<img id="unknown" class="flag" src="../../img/flags/unknown.png">
-<canvas id="myCanvas" class="canvas" width= "1480" height="1180"></canvas>
+<!-- <img id="unknown" class="flag" src="../../img/flags/unknown.png"> -->
+<!-- <canvas id="myCanvas" class="canvas" width= "1480" height="1180"></canvas> -->
+
+
+<div class="row">
+	<div class="column col-lg-3 justify-content-center border">
+		<h2>8eme</h2>
+		<div ng-repeat="game in huit" class="column">
+			<div class="row justify-content-center">
+				<img src="img/flags/{{game.team1.name}}.png"/>	
+				<strong style="font-size: 20px">{{ game.goalTeam1 }}</strong>
+			</div>
+			<div class="row justify-content-center">
+				<img src="img/flags/{{game.team2.name}}.png"/>	
+				<strong style="font-size:20px; vertical-align: center">{{ game.goalTeam2 }}</strong>
+			</div>
+		<hr>
+		</div>
+	</div>
+	<div class="column col-lg-3 justify-content-center border">
+		<h2>4eme</h2>
+		<div ng-repeat="game in quart" class="row col-lg-5">
+			<div>
+				<img src="img/flags/{{game.team1.name}}.png"/>	
+			</div>
+			<div>
+				{{ game.goalTeam1 }} - {{ game.goalTeam2 }}
+			</div>
+			<div>
+				<img src="img/flags/{{game.team2.name}}.png"/>	
+			</div>
+		</div>
+	</div>
+	<div class="column col-lg-3 justify-content-center border">
+		<h2>Demi-Finale</h2>
+		<div ng-repeat="game in demi" class="row col-lg-5">
+			<div>
+				<img src="img/flags/{{game.team1.name}}.png"/>	
+			</div>
+			<div>
+				<strong>{{ game.goalTeam1 }}</strong> - <strong>{{ game.goalTeam2 }}</strong>
+			</div>
+			<div>
+				<img src="img/flags/{{game.team2.name}}.png"/>	
+			</div>
+		</div>
+	</div>
+	<div class="column col-lg-3 justify-content-center border">
+		<h2>FINALE</h2>
+		<div ng-repeat="game in finale" class="row col-lg-5">
+			<div>
+				<img src="img/flags/{{game.team1.name}}.png"/>	
+			</div>
+			<div>
+				{{ game.goalTeam1 }} - {{ game.goalTeam2 }}
+			</div>
+			<div>
+				<img src="img/flags/{{game.team2.name}}.png"/>	
+			</div>
+		</div>
+	</div>
+</div>

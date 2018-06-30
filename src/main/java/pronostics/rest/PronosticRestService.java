@@ -83,6 +83,16 @@ public class PronosticRestService {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	@POST
+	@Path("/update/points")
+	public Response updatePronoPoints(Pronostic prono) {
+		if (pronosticRepository != null) {
+			int pronos = pronosticRepository.updateResultat(prono);
+			return Response.ok(pronos).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
 	@GET
 	@Path("/calculate/points/{pronoId}")
 	public Response updatePoints(@PathParam("pronoId") String pronoId) {
