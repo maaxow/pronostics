@@ -53,14 +53,14 @@
 				<thead>
 					<tr>
 						<th>id</th>
-						<th>Prénom Nom</th>
+						<th>PrÃ©nom Nom</th>
 						<th>Pronostique</th>
 						<th>Points</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-ng-repeat="prono in pronos | orderBy: 'firstname'">
+					<tr data-ng-repeat="prono in pronos | orderBy: 'game.id'">
 						<td>{{prono.id}}</td>
 						<td>{{prono.user.firstname}} {{prono.user.lastname}}</td>
 						<td>
