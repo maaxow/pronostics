@@ -17,13 +17,13 @@
 		base-package="pronostics" />
 
 		<!-- GLOBAL CONF -->
-		<bean id="dataSource"
+		<!-- <bean id="dataSource"
 			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="${SQL_DRIVER}"/>
 			<property name="url" value="${SQL_URL}"/>
 			<property name="username" value="${SQL_USER}"/>
 			<property name="password" value="${SQL_PASSWORD}"/>
-		</bean>
+		</bean>-->
 		<!-- MariaDB Configuration -->
 		<!-- <bean id="dataSource"
 			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -34,11 +34,12 @@
 		</bean> -->
 
 		<!-- MySQL Configuration -->
-		<!-- <bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/db"/>
-		<property name="username" value="user"/>
-		<property name="password" value="password"/>-->
+		<bean id="dataSource"
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+			<property name="url" value="jdbc:mysql://localhost:3306/db"/>
+			<property name="username" value="user"/>
+			<property name="password" value="password"/>
+		</bean
 
 	</beans>
