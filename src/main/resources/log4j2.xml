@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="pattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="${pattern}" />
+		</Console>
+		<RollingFile name="AppFile" fileName="logs/app.log" filePattern="logs/app-%i.log" append="true">
+	      <PatternLayout
+	        pattern="${pattern}" />
+	      <Policies>
+	      	<SizeBasedTriggeringPolicy size="20 MB" />
+	      </Policies>
+	      <DefaultRolloverStrategy max="20"/>
+	    </RollingFile>
+   		<RollingFile name="ErrorFile" fileName="logs/error.log" filePattern="logs/error-%i.log" append="true">
+	      <PatternLayout
+	        pattern="${pattern}" />
+	      <Policies>
+	      	<SizeBasedTriggeringPolicy size="20 MB" />
+	      </Policies>
+	      <DefaultRolloverStrategy max="20"/>
+	    </RollingFile>		
+	    <RollingFile name="SpringFile" fileName="logs/spring.log" filePattern="logs/spring-%i.log" append="true">
+	      <PatternLayout
+	        pattern="${pattern}" />
+	      <Policies>
+	      	<SizeBasedTriggeringPolicy size="20 MB" />
+	      </Policies>
+	      <DefaultRolloverStrategy max="20"/>
+	    </RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.springframework" level="INFO" additivity="false">
+	      <AppenderRef ref="SpringFile"/>
+	    </Logger>		
+	    <Logger name="fr.maaxow" level="INFO" additivity="true">
+	      <AppenderRef ref="AppFile"/>
+	    </Logger>
+		<Root level="WARN">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

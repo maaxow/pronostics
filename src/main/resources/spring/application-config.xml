@@ -16,6 +16,11 @@
 	<context:component-scan
 		base-package="pronostics" />
 
+		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	        <property name="location">
+	            <value>classpath:/spring/application.properties</value>
+	        </property>
+	    </bean>
 		<bean id="dataSource"
 			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="${sql.driver}"/>
