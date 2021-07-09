@@ -14,11 +14,11 @@
 
 	<context:annotation-config />
 	<context:component-scan
-		base-package="pronostics" />
+		base-package="fr.maaxow.pronostics" />
 
 		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	        <property name="location">
-	            <value>classpath:/spring/application.properties</value>
+	            <value>/etc/pronostics/config/application.properties</value>
 	        </property>
 	    </bean>
 		<bean id="dataSource"

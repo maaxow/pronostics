@@ -40,7 +40,7 @@
 	    <Logger name="fr.maaxow" level="INFO" additivity="true">
 	      <AppenderRef ref="AppFile"/>
 	    </Logger>
-		<Root level="WARN">
+		<Root level="INFO">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
